@@ -497,11 +497,7 @@ export default function HomePage() {
           </header>
 
           <div className="vx-running-badge">
-            <div className="vx-running-faces" aria-hidden="true">
-              <img src="/assets/images/home/hero-workflow.jpg" alt="" />
-              <img src="/assets/images/home/hero-agents.jpg" alt="" />
-              <img src="/assets/images/home/hero-customer.jpg" alt="" />
-            </div>
+            <div className="vx-running-dot" aria-hidden="true" />
             <div><strong>24/7</strong><small>Automations running</small></div>
           </div>
 
