@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Brand } from "@/src/components/brand/Brand";
 import { capabilityCards, heroImages } from "@/src/features/home/data/content";
-import { serviceMenuGroups } from "@/src/features/services/data/services";
+import { getServiceItemHref, serviceMenuGroups } from "@/src/features/services/data/services";
 
 type SiteSearchItem = {
   id: string;
@@ -36,7 +36,7 @@ const serviceSearchItems: SiteSearchItem[] = serviceMenuGroups.flatMap((group, g
     title: group.title,
     category: "Service area",
     description: group.description,
-    href: "#services",
+    href: "#services" as const,
     groupIndex,
     featured: groupIndex === 0,
   },
@@ -65,21 +65,21 @@ const siteSearchItems: SiteSearchItem[] = [
     title: "Workflow Discovery & Strategy",
     category: "Approach",
     description: "Find the highest-value workflows and shape a practical automation roadmap.",
-    href: "#method",
+    href: "#method" as const,
   },
   {
     id: "production-approach",
     title: "Production AI Delivery",
     category: "Approach",
     description: "Secure integrations, human approvals, governance, and operational control.",
-    href: "#method",
+    href: "#method" as const,
   },
   {
     id: "start-project",
     title: "Start an AI Automation Project",
     category: "Contact",
     description: "Talk with Digital Solutions about your workflow automation opportunity.",
-    href: "#contact",
+    href: "#contact" as const,
   },
 ].filter((item, index, items) => (
   items.findIndex((candidate) => candidate.title.toLocaleLowerCase() === item.title.toLocaleLowerCase()) === index
@@ -432,7 +432,7 @@ export default function HomePage() {
               >
                 <a
                   className="vx-mega-preview"
-                  href="#services"
+                  href={`/services/${activeMenuGroup.id}`}
                   onClick={() => setServicesOpen(false)}
                   aria-label={`Explore ${activeMenuGroup.title}`}
                 >
@@ -470,7 +470,7 @@ export default function HomePage() {
                         onPointerEnter={() => setActiveServiceGroup(groupIndex)}
                         onFocusCapture={() => setActiveServiceGroup(groupIndex)}
                       >
-                        <a className="vx-mega-group-title" href="#services" onClick={() => setServicesOpen(false)}>
+                        <a className="vx-mega-group-title" href={`/services/${group.id}`} onClick={() => setServicesOpen(false)}>
                           {group.title} <ArrowRight size={15} aria-hidden="true" />
                         </a>
                         <ul>
@@ -478,7 +478,7 @@ export default function HomePage() {
                             <li key={service}>
                               <a
                                 ref={groupIndex === 0 && serviceIndex === 0 ? firstServiceLinkRef : undefined}
-                                href="#services"
+                                href={getServiceItemHref(service, group.id)}
                                 onPointerEnter={() => setActiveServiceGroup(groupIndex)}
                                 onFocus={() => setActiveServiceGroup(groupIndex)}
                                 onClick={() => setServicesOpen(false)}

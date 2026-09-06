@@ -24,7 +24,7 @@ export function ServicePageHeader({
           <Link href={backHref} className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-200 hover:text-white transition-colors">
             <ChevronLeft size={14} /> {backLabel}
           </Link>
-          <Link href="/#services">All Services</Link>
+          <Link href="/services/marketing-seo">All Services</Link>
           <Link href="/#work">Capabilities</Link>
         </nav>
       </div>
