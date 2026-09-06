@@ -1,3 +1,10 @@
+process.stdout?.on?.("error", (err: any) => { if (err?.code !== "EOF" && err?.code !== "EPIPE") console.error(err); });
+process.stderr?.on?.("error", (err: any) => { if (err?.code !== "EOF" && err?.code !== "EPIPE") console.error(err); });
+process.on("uncaughtException", (err: any) => {
+  if (err?.code === "EOF" || err?.code === "EPIPE" || err?.syscall === "write") return;
+  console.error(err);
+});
+
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
@@ -33,27 +40,32 @@ const localBindingConfig = {
     : [],
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command }) => {
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= "false";
   process.env.WRANGLER_LOG_PATH ??= ".wrangler/logs";
   process.env.MINIFLARE_REGISTRY_PATH ??= ".wrangler/registry";
 
-  // Wrangler snapshots its log path while the Cloudflare plugin is imported.
-  const { cloudflare } = await import("@cloudflare/vite-plugin");
+  const enableCloudflare =
+    command === "build" || process.env.ENABLE_CLOUDFLARE === "true";
+
+  const plugins: any[] = [vinext(), sites()];
+
+  if (enableCloudflare) {
+    const { cloudflare } = await import("@cloudflare/vite-plugin");
+    plugins.push(
+      cloudflare({
+        viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
+        config: localBindingConfig,
+      })
+    );
+  }
 
   return {
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
-    plugins: [
-      vinext(),
-      sites(),
-      cloudflare({
-        viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-        config: localBindingConfig,
-      }),
-    ],
+    plugins,
   };
 });
