@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --vx-black: #0c0e0a;
-  --vx-black-soft: #171914;
-  --vx-paper: #fafbf5;
-  --vx-canvas: #e8e5dc;
-  --vx-lime: #d9ff66;
-  --vx-line: rgba(12, 14, 10, 0.14);
-  --vx-line-light: rgba(255, 255, 255, 0.14);
+  --vx-black: #050b14;
+  --vx-black-soft: #0a1b33;
+  --vx-paper: #ffffff;
+  --vx-canvas: #f0f7ff;
+  --vx-sky: #0ea5e9;
+  --vx-sky-bright: #38bdf8;
+  --vx-sky-deep: #0284c7;
+  --vx-sky-light: #e0f2fe;
+  --vx-lime: #38bdf8;
+  --vx-line: rgba(14, 165, 233, 0.16);
+  --vx-line-light: rgba(224, 242, 254, 0.22);
 }
 
 * {
@@ -107,12 +111,12 @@ button:focus-visible {
 }
 
 .vx-brand-mark i:nth-child(2) {
-  background: var(--vx-lime);
+  background: var(--vx-sky-bright);
 }
 
 .vx-brand-mark i:nth-child(3) {
   grid-column: 2;
-  background: #65ded0;
+  background: var(--vx-sky);
 }
 
 .vx-brand-word {
@@ -145,7 +149,7 @@ button:focus-visible {
   min-height: 650px;
   overflow: hidden;
   border-radius: 0;
-  background: #1b211b;
+  background: #071325;
   color: #fff;
 }
 
@@ -215,10 +219,10 @@ button:focus-visible {
   align-items: center;
   gap: 42px;
   padding-inline: clamp(14px, 2.2vw, 28px) 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 99px;
-  background: rgba(7, 10, 11, 0.25);
-  box-shadow: 0 14px 36px rgba(3, 6, 8, 0.2);
+  background: rgba(7, 19, 37, 0.65);
+  box-shadow: 0 14px 36px rgba(2, 12, 27, 0.35);
   color: #fff;
   overflow: visible;
   backdrop-filter: blur(20px) saturate(108%);
@@ -921,11 +925,11 @@ button:focus-visible {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #9a7cff;
+  background: var(--vx-sky-bright);
   content: "";
   box-shadow:
-    0 0 0 4px rgba(154, 124, 255, 0.15),
-    0 0 18px rgba(94, 211, 255, 0.48);
+    0 0 0 4px rgba(56, 189, 248, 0.2),
+    0 0 18px rgba(14, 165, 233, 0.6);
 }
 
 .vx-frost-copy h1 {
@@ -935,7 +939,7 @@ button:focus-visible {
   font-weight: 720;
   letter-spacing: -0.05em;
   line-height: 0.92;
-  text-shadow: 0 4px 34px rgba(2, 3, 18, 0.24);
+  text-shadow: 0 4px 34px rgba(2, 12, 27, 0.4);
 }
 
 .vx-frost-copy h1 i {
@@ -945,7 +949,7 @@ button:focus-visible {
 .vx-frost-copy p {
   max-width: 560px;
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(224, 242, 254, 0.88);
   font-family: var(--font-roboto), Arial, sans-serif;
   font-size: clamp(13px, 1.05vw, 16px);
   line-height: 1.45;
@@ -974,14 +978,14 @@ button:focus-visible {
 }
 
 .vx-frost-actions a:first-child {
-  background: linear-gradient(135deg, #7657ed, #936dff);
-  box-shadow: 0 12px 28px rgba(70, 37, 163, 0.3);
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  box-shadow: 0 12px 28px rgba(14, 165, 233, 0.38);
   color: #fff;
 }
 
 .vx-frost-actions a:last-child {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -992,7 +996,7 @@ button:focus-visible {
 }
 
 .vx-frost-actions a:first-child:hover {
-  background: linear-gradient(135deg, #6847dc, #8460ef);
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
 }
 
 .vx-hero-metrics {
@@ -1072,8 +1076,8 @@ button:focus-visible {
 .vx-hero-dots button.is-active {
   width: 22px;
   border-radius: 99px;
-  background: #9a7cff;
-  box-shadow: 0 0 14px rgba(89, 211, 255, 0.42);
+  background: var(--vx-sky-bright);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
 }
 
 /* Overlapping white deck */
@@ -1155,7 +1159,8 @@ button:focus-visible {
 }
 
 .vx-service-summary a {
-  background: var(--vx-black);
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
   color: #fff;
 }
 
@@ -1222,8 +1227,10 @@ button:focus-visible {
 }
 
 .vx-feature-copy a {
-  background: #fff;
-  color: var(--vx-black);
+  background: #ffffff;
+  color: #0284c7;
+  font-weight: 750;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Capability card row */
@@ -1341,8 +1348,8 @@ button:focus-visible {
   margin-top: -28px;
   padding: 90px clamp(28px, 4vw, 60px) 26px;
   background:
-    radial-gradient(circle at 84% 10%, rgba(112, 123, 93, 0.1), transparent 28%),
-    var(--vx-black);
+    radial-gradient(circle at 84% 10%, rgba(14, 165, 233, 0.15), transparent 30%),
+    #050b14;
   color: #fff;
 }
 
