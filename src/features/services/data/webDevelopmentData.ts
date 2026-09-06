@@ -49,7 +49,7 @@ export const webDevServices: readonly WebDevService[] = [
     ],
     deliverables: [
       { title: "Custom LLM Integrations", desc: "Fine‑tuned GPT, Claude, or open‑source models embedded in your product workflow.", iconName: "Brain" },
-      { title: "Intelligent Chatbots & Agents", desc: "Conversational AI with RAG pipelines, tool‑use, and memory for support and sales.", iconName: "Sparkles" },
+      { title: "Intelligent Chatbots & Agents", desc: "Conversational AI with RAG pipelines, tool‑use, and memory for support and sales.", iconName: "Zap" },
       { title: "Recommendation & Personalization", desc: "ML‑driven recommendation engines that boost engagement and revenue.", iconName: "TrendingUp" },
       { title: "Computer Vision Pipelines", desc: "Image classification, object detection, and video analytics solutions.", iconName: "Target" },
     ],

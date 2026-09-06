@@ -58,3 +58,43 @@ export const capabilityCards = [
     alt: "Customer operations team at work",
   },
 ] as const;
+
+export const whyChooseReasons = [
+  {
+    title: "Built for production",
+    copy: "We ship agents, products, and workflows that hold up in live operations—not demos that stall after the pitch.",
+  },
+  {
+    title: "People stay in control",
+    copy: "Approvals, guardrails, and clear ownership sit inside every system so automation never outruns your team.",
+  },
+  {
+    title: "Works with your stack",
+    copy: "CRM, ERP, content, and custom software stay connected. We design around the tools you already run.",
+  },
+  {
+    title: "Outcomes you can measure",
+    copy: "Cycle time, cost, conversion, and quality are tracked from day one so growth is visible, not assumed.",
+  },
+] as const;
+
+export const clientReviews = [
+  {
+    quote: "Digital Solutions replaced a week of handoffs with a workflow that runs overnight. Our ops team finally has time for the work that needs judgment.",
+    name: "Amina Rahman",
+    role: "Head of Operations",
+    company: "Northline Logistics",
+  },
+  {
+    quote: "They did not just add AI to the product. They rebuilt the experience around how our customers actually buy, and conversion followed.",
+    name: "James Okonkwo",
+    role: "VP Product",
+    company: "Harborpay",
+  },
+  {
+    quote: "Clear process, tight communication, and delivery we could put in front of the board. It felt like an extension of our own team.",
+    name: "Sofia Alvarez",
+    role: "Marketing Director",
+    company: "Lumen & Co.",
+  },
+] as const;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Compass, Sparkles, Layers, Zap, Target } from "lucide-react";
+import { Compass, Palette, Layers, Zap, Target } from "lucide-react";
 import { ServiceHubView } from "@/src/features/services/components/ServiceHubView";
 import { designServices } from "@/src/features/services/data/designData";
 import type { HubPageConfig } from "@/src/features/services/types";
@@ -19,7 +19,7 @@ const config: HubPageConfig = {
   services: designServices,
   icons: {
     "product-strategy": Compass,
-    "ux-ui-design": Sparkles,
+    "ux-ui-design": Palette,
     "design-systems": Layers,
     "rapid-prototyping": Zap,
     "conversion-experience-design": Target,

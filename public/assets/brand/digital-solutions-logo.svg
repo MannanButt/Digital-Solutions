@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" aria-label="Digital Solutions Logo">
+  <defs>
+    <linearGradient id="dsGrad" x1="10" y1="10" x2="80" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0062ff"/>
+      <stop offset="60%" stop-color="#0080ff"/>
+      <stop offset="100%" stop-color="#00c8ff"/>
+    </linearGradient>
+    <linearGradient id="dsLine" x1="0" y1="0" x2="60" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#0077ff"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stylized D Symbol with Pixel Breakaway -->
+  <g transform="translate(4, 4)">
+    <!-- Main D Arc -->
+    <path d="M38 6 H58 C74 6 86 17 86 36 C86 55 74 66 58 66 H38 V54 H57 C67 54 73 45 73 36 C73 27 67 18 57 18 H38 Z" fill="url(#dsGrad)"/>
+    
+    <!-- Pixels Breakaway -->
+    <rect x="31" y="14" width="5.5" height="5.5" rx="1" fill="url(#dsGrad)"/>
+    <rect x="40" y="18" width="7" height="7" rx="1.2" fill="url(#dsGrad)"/>
+    <rect x="27" y="22" width="7" height="7" rx="1.2" fill="url(#dsGrad)"/>
+    <rect x="44" y="25" width="8.5" height="8.5" rx="1.4" fill="url(#dsGrad)"/>
+    <rect x="35" y="31" width="9" height="9" rx="1.4" fill="url(#dsGrad)"/>
+    <rect x="21" y="33" width="7.5" height="7.5" rx="1.2" fill="url(#dsGrad)"/>
+    <rect x="29" y="42" width="7.5" height="7.5" rx="1.2" fill="url(#dsGrad)"/>
+    <rect x="39" y="45" width="7" height="7" rx="1.2" fill="url(#dsGrad)"/>
+    <rect x="38" y="55" width="6" height="6" rx="1" fill="url(#dsGrad)"/>
+    <rect x="29" y="54" width="5" height="5" rx="0.8" fill="url(#dsGrad)"/>
+  </g>
+
+  <!-- Typography -->
+  <!-- DIGITAL -->
+  <text x="106" y="32" font-family="'Nunito Sans', 'Inter', system-ui, -apple-system, sans-serif" font-size="25" font-weight="900" letter-spacing="4.5" fill="currentColor">DIGITAL</text>
+  
+  <!-- SOLUTIONS -->
+  <text x="106" y="53" font-family="'Nunito Sans', 'Inter', system-ui, -apple-system, sans-serif" font-size="19" font-weight="800" letter-spacing="4.2" fill="#0077ff">SOLUTIONS</text>
+  
+  <!-- Tagline -->
+  <text x="107" y="67" font-family="'Nunito Sans', 'Roboto', system-ui, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.8" fill="#64748b">Smart Solutions, Digital Growth</text>
+  
+  <!-- Accent Line -->
+  <rect x="107" y="73" width="38" height="2" rx="1" fill="url(#dsLine)"/>
+</svg>

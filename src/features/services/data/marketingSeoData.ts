@@ -84,7 +84,7 @@ export const marketingSeoSubServices: Record<string, SubServiceDetail> = {
     deliverables: [
       { title: "Google & Meta Ads Automation", desc: "Structure-driven campaign setups with continuous creative testing and smart bidding.", iconName: "Target" },
       { title: "Dynamic Landing Page Experience", desc: "Personalized landing page variants aligned with visitor search keywords for max conversions.", iconName: "Layout" },
-      { title: "Ad Creative Automation", desc: "Generative creative pipelines producing high-converting ad variations in minutes.", iconName: "Sparkles" },
+      { title: "Ad Creative Automation", desc: "Generative creative pipelines producing high-converting ad variations in minutes.", iconName: "Zap" },
       { title: "Conversion Rate Optimization (CRO)", desc: "A/B testing, heatmaps, and friction reduction across checkout and lead forms.", iconName: "TrendingUp" },
     ],
     workflowSteps: [

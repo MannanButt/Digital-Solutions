@@ -58,7 +58,7 @@ export const designServices: readonly DesignService[] = [
     ],
     deliverables: [
       { title: "Interactive Wireframes", desc: "Low-fidelity structural blueprints testing information architecture and user flow efficiency.", iconName: "Layout" },
-      { title: "Pixel-Perfect UI Mockups", desc: "Modern, high-fidelity visual design with cohesive color palettes, typography, and iconography.", iconName: "Sparkles" },
+      { title: "Pixel-Perfect UI Mockups", desc: "Modern, high-fidelity visual design with cohesive color palettes, typography, and iconography.", iconName: "Palette" },
       { title: "Micro-Interactions & Motion", desc: "Engaging transition animations and responsive feedback states that elevate user delight.", iconName: "Zap" },
       { title: "Developer Hand-Off Specs", desc: "Fully annotated design specs, auto-layout tokens, and redlines for seamless frontend implementation.", iconName: "Code2" },
     ],
@@ -123,7 +123,7 @@ export const designServices: readonly DesignService[] = [
     deliverables: [
       { title: "Clickable High-Fidelity Prototypes", desc: "Realistic interactions, transitions, and micro-flows that mirror real production software.", iconName: "Zap" },
       { title: "Usability Testing Protocols", desc: "Structured user test scripts, scenario prompts, and task completion metrics.", iconName: "CheckCircle2" },
-      { title: "Investor & Pitch Prototypes", desc: "Polished demonstration prototypes tailored for investor decks and executive alignment.", iconName: "Sparkles" },
+      { title: "Investor & Pitch Prototypes", desc: "Polished demonstration prototypes tailored for investor decks and executive alignment.", iconName: "Target" },
       { title: "User Feedback Synthesis", desc: "Clear video clips, heatmaps, and actionable design recommendations based on real user trials.", iconName: "TrendingUp" },
     ],
     workflowSteps: [

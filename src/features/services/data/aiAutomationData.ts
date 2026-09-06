@@ -58,7 +58,7 @@ export const aiAutomationServices: readonly AIAutomationService[] = [
     ],
     deliverables: [
       { title: "Domain-Trained Copilots", desc: "Internal copilots tuned on your company codebase, SOPs, contracts, and knowledge base.", iconName: "Brain" },
-      { title: "Tool-Augmented Autonomous Agents", desc: "Agents capable of running SQL queries, creating Jira tickets, scheduling calendar invites, and updating records.", iconName: "Sparkles" },
+      { title: "Tool-Augmented Autonomous Agents", desc: "Agents capable of running SQL queries, creating Jira tickets, scheduling calendar invites, and updating records.", iconName: "Zap" },
       { title: "Multi-Agent Coordination Systems", desc: "Collaborative agent clusters where specialized sub-agents delegate, critique, and finalize outputs.", iconName: "Users" },
       { title: "Enterprise Access Control (RBAC)", desc: "Fine-grained permissions ensuring copilots only access information the authenticated user has clearance for.", iconName: "CheckCircle2" },
     ],

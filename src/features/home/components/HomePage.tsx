@@ -13,11 +13,14 @@ import {
   Linkedin,
   Mail,
   Menu,
+  Quote,
   Search,
+  Star,
   X,
 } from "lucide-react";
 import { Brand } from "@/src/components/brand/Brand";
-import { capabilityCards, heroImages } from "@/src/features/home/data/content";
+import { BrandBar } from "@/src/components/brand/BrandBar";
+import { clientReviews, heroImages, whyChooseReasons } from "@/src/features/home/data/content";
 import { getServiceItemHref, serviceMenuGroups } from "@/src/features/services/data/services";
 
 type SiteSearchItem = {
@@ -25,7 +28,7 @@ type SiteSearchItem = {
   title: string;
   category: string;
   description: string;
-  href: "#services" | "#work" | "#method" | "#contact";
+  href: "#services" | "#why" | "#method" | "#contact";
   groupIndex?: number;
   featured?: boolean;
 };
@@ -53,13 +56,13 @@ const serviceSearchItems: SiteSearchItem[] = serviceMenuGroups.flatMap((group, g
 
 const siteSearchItems: SiteSearchItem[] = [
   ...serviceSearchItems,
-  ...capabilityCards.map((card, index) => ({
-    id: `capability-${index}`,
-    title: card.title,
-    category: "Capability",
-    description: card.copy,
-    href: "#work" as const,
-  })),
+  {
+    id: "why-choose-us",
+    title: "Why Choose Digital Solutions",
+    category: "About Us",
+    description: "Enterprise governance, multi-cloud speed, and proven ROI.",
+    href: "#why" as const,
+  },
   {
     id: "workflow-discovery",
     title: "Workflow Discovery & Strategy",
@@ -287,12 +290,12 @@ export default function HomePage() {
                   Services <ChevronDown size={13} aria-hidden="true" />
                 </button>
                 <a
-                  href="#work"
+                  href="#why"
                   onPointerEnter={() => setServicesOpen(false)}
                   onFocus={() => setServicesOpen(false)}
                   onClick={() => { setServicesOpen(false); closeSearch(); }}
                 >
-                  Capabilities
+                  Why Choose Us
                 </a>
                 <a
                   href="#method"
@@ -496,30 +499,93 @@ export default function HomePage() {
             )}
           </header>
 
-          <div className="vx-running-badge">
-            <div className="vx-running-dot" aria-hidden="true" />
-            <div><strong>24/7</strong><small>Automations running</small></div>
-          </div>
-
           <div className={`vx-frost-panel vx-frost-panel--${activeHero}`} aria-hidden="true">
             <div className="vx-frost-tint" />
           </div>
 
           <div className="vx-frost-content">
             <div className="vx-frost-copy">
-              <span>01 / Core service</span>
-              <h1><i>AI Automation</i><i>&amp; Workflow Agents</i></h1>
-              <p>We design intelligent agents and connected workflows that move real operational work—with people in control.</p>
+              <span>ENTERPRISE DIGITAL AGENCY &amp; AUTOMATION LAB</span>
+              <h1><i>Smart Solutions.</i><i>Digital Growth.</i></h1>
+              <p>We architect full-stack digital solutions—from autonomous AI agents and enterprise web applications to conversion-focused UI/UX design and high-ROAS Meta &amp; Google marketing funnels.</p>
               <div className="vx-frost-actions">
-                <a href="#services">Start with AI automation <ArrowRight size={15} aria-hidden="true" /></a>
-                <a href="#work">Explore capabilities</a>
+                <a href="#services">Explore 4 Core Services <ArrowRight size={15} aria-hidden="true" /></a>
+                <a href="#why">Why Choose Us</a>
               </div>
             </div>
 
-            <div className="vx-hero-metrics" aria-label="Automation outcomes">
-              <div><strong>40%</strong><span>Less manual work</span></div>
-              <div><strong>3×</strong><span>Faster process cycles</span></div>
-              <div><strong>100%</strong><span>Observable workflows</span></div>
+            <div className="vx-hero-services-grid" aria-label="Our 4 Core Service Capabilities">
+              {/* Service 1: AI Automation */}
+              <a href="/services/ai-automation" className="vx-hero-service-card" title="Explore AI Automation">
+                <div className="vx-hsc-top">
+                  <span className="vx-hsc-badge">
+                    <span className="vx-hsc-dot" />
+                    01 • AI AUTOMATION
+                  </span>
+                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
+                </div>
+                <h4>Autonomous Workflow Agents</h4>
+                <div className="vx-hsc-metric">40% Lower Cost • 24/7 Execution</div>
+                <div className="vx-hsc-tags">
+                  <span className="vx-hsc-tag">Copilots</span>
+                  <span className="vx-hsc-tag">RAG Agents</span>
+                  <span className="vx-hsc-tag">Docs AI</span>
+                </div>
+              </a>
+
+              {/* Service 2: Development */}
+              <a href="/services/development" className="vx-hero-service-card" title="Explore Development">
+                <div className="vx-hsc-top">
+                  <span className="vx-hsc-badge" style={{ color: "#38bdf8" }}>
+                    <span className="vx-hsc-dot" style={{ background: "#38bdf8" }} />
+                    02 • DEVELOPMENT
+                  </span>
+                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
+                </div>
+                <h4>Next-Gen Web &amp; App Systems</h4>
+                <div className="vx-hsc-metric">Sub-Second Latency • Cloud SLA</div>
+                <div className="vx-hsc-tags">
+                  <span className="vx-hsc-tag">Next.js / React</span>
+                  <span className="vx-hsc-tag">DevOps</span>
+                  <span className="vx-hsc-tag">APIs</span>
+                </div>
+              </a>
+
+              {/* Service 3: Marketing & SEO */}
+              <a href="/services/marketing-seo" className="vx-hero-service-card" title="Explore Marketing & SEO">
+                <div className="vx-hsc-top">
+                  <span className="vx-hsc-badge" style={{ color: "#60a5fa" }}>
+                    <span className="vx-hsc-dot" style={{ background: "#60a5fa" }} />
+                    03 • MARKETING &amp; SEO
+                  </span>
+                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
+                </div>
+                <h4>Meta &amp; Google Ads Engine</h4>
+                <div className="vx-hsc-metric">4.2× Target ROAS • Organic SEO</div>
+                <div className="vx-hsc-tags">
+                  <span className="vx-hsc-tag">Meta Ads</span>
+                  <span className="vx-hsc-tag">Google Ads</span>
+                  <span className="vx-hsc-tag">Funnels</span>
+                </div>
+              </a>
+
+              {/* Service 4: Design */}
+              <a href="/services/design" className="vx-hero-service-card" title="Explore Design Services">
+                <div className="vx-hsc-top">
+                  <span className="vx-hsc-badge" style={{ color: "#818cf8" }}>
+                    <span className="vx-hsc-dot" style={{ background: "#818cf8" }} />
+                    04 • PRODUCT DESIGN
+                  </span>
+                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
+                </div>
+                <h4>UX/UI &amp; Scalable Systems</h4>
+                <div className="vx-hsc-metric">+45% Conversion Lift • Figma</div>
+                <div className="vx-hsc-tags">
+                  <span className="vx-hsc-tag">Figma Systems</span>
+                  <span className="vx-hsc-tag">Prototypes</span>
+                  <span className="vx-hsc-tag">Tokens</span>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -545,7 +611,90 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Agency Brand & Ecosystem Marquee Bar */}
+        <BrandBar />
+
+        <section className="vx-why" id="why" aria-labelledby="why-title">
+          <div className="vx-why-heading">
+            <span>Why Digital Solutions</span>
+            <h2 id="why-title">Why choose us</h2>
+            <p>We pair intelligent systems with the operational discipline to make them useful—across automation, products, marketing, and design.</p>
+          </div>
+
+          <div className="vx-why-grid">
+            {whyChooseReasons.map((reason, index) => (
+              <article className="vx-why-card" key={reason.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{reason.title}</h3>
+                <p>{reason.copy}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="vx-reviews" aria-labelledby="reviews-title">
+            <div className="vx-reviews-heading">
+              <h3 id="reviews-title">What our clients say</h3>
+              <a href="#services">See all services <ArrowRight size={15} aria-hidden="true" /></a>
+            </div>
+
+            <div className="vx-reviews-grid">
+              {clientReviews.map((review) => (
+                <blockquote className="vx-review-card" key={review.name}>
+                  <div className="vx-review-stars" aria-label="5 out of 5 stars">
+                    {Array.from({ length: 5 }, (_, starIndex) => (
+                      <Star key={starIndex} size={13} fill="currentColor" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <Quote className="vx-review-quote" size={22} aria-hidden="true" />
+                  <p>{review.quote}</p>
+                  <footer>
+                    <strong>{review.name}</strong>
+                    <span>{review.role}, {review.company}</span>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="vx-deck" id="services">
+          <div className="vx-services-showcase">
+            <div className="vx-services-showcase-heading">
+              <span>What We Deliver</span>
+              <h2>Our Comprehensive Services</h2>
+              <p>Explore our core service areas—engineered to transform operations, scale growth, and deliver high-impact digital experiences.</p>
+            </div>
+
+            <div className="vx-services-grid">
+              {serviceMenuGroups.map((group) => (
+                <article className="vx-service-card-main" key={group.id}>
+                  <div>
+                    <div className="vx-service-card-image">
+                      <img src={group.image} alt={group.title} style={{ objectPosition: group.imagePosition }} />
+                    </div>
+                    <span className="vx-service-card-eyebrow">{group.eyebrow}</span>
+                    <h3>{group.title}</h3>
+                    <p>{group.description}</p>
+                    <div className="vx-service-card-subservices">
+                      {group.services.map((subService) => (
+                        <a
+                          key={subService}
+                          href={getServiceItemHref(subService, group.id)}
+                          className="vx-service-chip"
+                        >
+                          {subService}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                  <a href={`/services/${group.id}`} className="vx-service-card-cta">
+                    Explore {group.title} <ArrowRight size={15} aria-hidden="true" />
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+
           <div className="vx-service-intro">
             <div className="vx-service-index" aria-label="Service categories">
               <span>Strategy</span>
@@ -574,65 +723,92 @@ export default function HomePage() {
               </div>
             </article>
           </div>
-
-          <section className="vx-capabilities" id="work" aria-labelledby="capabilities-title">
-            <div className="vx-capabilities-heading">
-              <h2 id="capabilities-title">Capabilities, together.</h2>
-              <span aria-hidden="true" />
-              <a href="#contact">View all services <ArrowRight size={15} aria-hidden="true" /></a>
-            </div>
-
-            <div className="vx-card-rail">
-              {capabilityCards.map((card) => (
-                <article className="vx-capability-card" key={card.title}>
-                  <div className="vx-card-image">
-                    <img src={card.image} alt={card.alt} />
-                  </div>
-                  <h3>{card.title}</h3>
-                  <p>{card.copy}</p>
-                  <a href="#contact" aria-label={`Explore ${card.title}`}><ArrowUpRight size={15} aria-hidden="true" /></a>
-                </article>
-              ))}
-            </div>
-          </section>
         </section>
 
         <footer className="vx-footer" id="contact">
-          <div className="vx-footer-grid">
-            <div className="vx-footer-brand">
-              <a href="#top"><Brand /></a>
-              <p>AI workflow automation for modern operations.</p>
+          {/* Top CTA Banner */}
+          <div className="vx-footer-cta-banner">
+            <div className="vx-footer-cta-text">
+              <h3>Ready to scale your digital presence &amp; operations?</h3>
+              <p>Partner with Digital Solutions to engineer autonomous AI, custom software, and revenue-multiplying marketing systems.</p>
             </div>
-
-            <div className="vx-footer-column">
-              <strong>Strategy</strong>
-              <a href="#services">Workflow discovery</a>
-              <a href="#services">Automation roadmap</a>
-              <a href="#services">AI readiness</a>
-            </div>
-            <div className="vx-footer-column">
-              <strong>Automation</strong>
-              <a href="#work">AI agents</a>
-              <a href="#work">Document intelligence</a>
-              <a href="#work">Systems integration</a>
-            </div>
-            <div className="vx-footer-column">
-              <strong>Operations</strong>
-              <a href="#work">Human approvals</a>
-              <a href="#work">Governance</a>
-              <a href="#work">Managed optimization</a>
-            </div>
+            <a href="mailto:hello@digitalsolutions.ai" className="vx-footer-cta-btn">
+              Start a Conversation <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
           </div>
 
-          <div className="vx-footer-socials" aria-label="Digital Solutions links">
-            <a href="#contact" aria-label="LinkedIn"><Linkedin size={15} aria-hidden="true" /></a>
-            <a href="mailto:hello@digitalsolutions.ai" aria-label="Email Digital Solutions"><Mail size={15} aria-hidden="true" /></a>
-            <a href="#top" aria-label="Digital Solutions website"><Globe2 size={15} aria-hidden="true" /></a>
+          <div className="vx-footer-grid">
+            {/* Brand Column */}
+            <div className="vx-footer-brand-info">
+              <a href="#top" aria-label="Digital Solutions home">
+                <Brand />
+              </a>
+              <p>
+                Smart Solutions, Digital Growth. We architect autonomous AI systems, enterprise-grade web applications, and high-converting marketing funnels for ambitious companies worldwide.
+              </p>
+              <div className="vx-footer-contact-items">
+                <a href="mailto:hello@digitalsolutions.ai" className="vx-footer-contact-item">
+                  <Mail size={14} className="text-sky-400" aria-hidden="true" /> hello@digitalsolutions.ai
+                </a>
+                <span className="vx-footer-contact-item">
+                  <Globe2 size={14} className="text-sky-400" aria-hidden="true" /> Global Remote &amp; On-Site Delivery
+                </span>
+              </div>
+              <div className="vx-footer-socials" style={{ margin: "12px 0 0", justifyContent: "flex-start" }}>
+                <a href="#contact" aria-label="LinkedIn"><Linkedin size={15} aria-hidden="true" /></a>
+                <a href="mailto:hello@digitalsolutions.ai" aria-label="Email Digital Solutions"><Mail size={15} aria-hidden="true" /></a>
+                <a href="#top" aria-label="Digital Solutions website"><Globe2 size={15} aria-hidden="true" /></a>
+              </div>
+            </div>
+
+            {/* Service Column 1: Development */}
+            <div className="vx-footer-column">
+              <h4>Development</h4>
+              <a href="/services/development/web-app-engineering">Web &amp; App Engineering</a>
+              <a href="/services/development/ai-product-development">AI Product Development</a>
+              <a href="/services/development/api-systems-integration">API &amp; Integrations</a>
+              <a href="/services/development/cloud-devops">Cloud &amp; DevOps</a>
+              <a href="/services/development/quality-automation">Quality Automation</a>
+            </div>
+
+            {/* Service Column 2: Marketing & SEO */}
+            <div className="vx-footer-column">
+              <h4>Marketing &amp; SEO</h4>
+              <a href="/services/marketing-seo/performance-marketing">Meta &amp; Google Ads</a>
+              <a href="/services/marketing-seo/technical-seo">Technical SEO</a>
+              <a href="/services/marketing-seo/ai-content-systems">AI Content Systems</a>
+              <a href="/services/marketing-seo/crm-lifecycle-automation">CRM Automation</a>
+              <a href="/services/marketing-seo/analytics-attribution">Attribution &amp; ROAS</a>
+            </div>
+
+            {/* Service Column 3: AI Automation */}
+            <div className="vx-footer-column">
+              <h4>AI Automation</h4>
+              <a href="/services/ai-automation/ai-workflow-automation">Workflow Automation</a>
+              <a href="/services/ai-automation/ai-agents-copilots">AI Agents &amp; Copilots</a>
+              <a href="/services/ai-automation/process-intelligence">Process Intelligence</a>
+              <a href="/services/ai-automation/document-intelligence">Document AI</a>
+              <a href="/services/ai-automation/governance-observability">Governance &amp; RBAC</a>
+            </div>
+
+            {/* Service Column 4: Design */}
+            <div className="vx-footer-column">
+              <h4>Design</h4>
+              <a href="/services/design/product-strategy">Product Strategy</a>
+              <a href="/services/design/ux-ui-design">UX &amp; UI Design</a>
+              <a href="/services/design/design-systems">Design Systems</a>
+              <a href="/services/design/rapid-prototyping">Rapid Prototyping</a>
+              <a href="/services/design/conversion-experience-design">Conversion Design</a>
+            </div>
           </div>
 
           <div className="vx-footer-bottom">
-            <span>© {new Date().getFullYear()} Digital Solutions</span>
-            <span>Better workflows. Clearer decisions. Work that keeps moving.</span>
+            <span>© {new Date().getFullYear()} Digital Solutions. All rights reserved.</span>
+            <div className="vx-footer-badges">
+              <span className="vx-footer-badge">🔒 SOC-2 Type II Certified</span>
+              <span className="vx-footer-badge">⚡ 99.98% System Uptime</span>
+              <span className="vx-footer-badge">🌍 Multi-Cloud Scale</span>
+            </div>
             <a href="#top">Back to top <ArrowUpRight size={13} aria-hidden="true" /></a>
           </div>
         </footer>
