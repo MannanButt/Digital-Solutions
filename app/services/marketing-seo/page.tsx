@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BarChart3, Cpu, Mail, Search, Sparkles, Target, HelpCircle } from "lucide-react";
+import PrimaryButton from "@/src/components/ui/PrimaryButton";
 import { ServicePageHeader } from "@/src/features/services/components/ServicePageHeader";
 import { marketingSeoSubServices } from "@/src/features/services/data/marketingSeoData";
 
@@ -111,12 +112,9 @@ export default function MarketingSeoHubPage() {
               Get an expert technical SEO audit, AI content roadmap, or performance marketing plan tailored to your product.
             </p>
           </div>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-linear-to-r from-sky-500 to-sky-600 text-white font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all shrink-0"
-          >
-            Start Growth Strategy <ArrowUpRight className="w-4 h-4" />
-          </Link>
+          <PrimaryButton href="/#contact">
+  Start Growth Strategy <ArrowUpRight className="w-4 h-4" />
+</PrimaryButton>
         </div>
       </section>
     </div>
