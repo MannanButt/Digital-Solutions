@@ -76,7 +76,6 @@ export function ServiceDetailView({
 
         <div className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100 border border-sky-300/60 text-sky-800 text-xs font-bold uppercase tracking-wider mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-sky-600" />
             {detail.eyebrow || detail.title}
           </div>
 

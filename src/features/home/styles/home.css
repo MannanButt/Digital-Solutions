@@ -86,46 +86,22 @@ button:focus-visible {
 .vx-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: #fff;
+  line-height: 0;
 }
 
-.vx-brand-mark {
-  position: relative;
-  display: grid;
-  width: 25px;
-  height: 25px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 3px;
-  transform: rotate(45deg);
-}
-
-.vx-brand-mark i {
-  border-radius: 2px;
+.vx-brand-logo {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: 168px;
+  object-fit: contain;
   background: #fff;
+  border-radius: 10px;
 }
 
-.vx-brand-mark i:nth-child(2) { background: var(--vx-blue-bright); }
-.vx-brand-mark i:nth-child(3) { grid-column: 2; background: var(--vx-blue); }
-
-.vx-brand-word { display: grid; line-height: 1; }
-
-.vx-brand-word strong {
-  font-family: var(--font-nunito-sans), Arial, sans-serif;
-  font-size: 17px;
-  font-weight: 760;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.vx-brand-word small {
-  margin-top: 4px;
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 7px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+.vx-brand--compact .vx-brand-logo {
+  height: 40px;
+  max-width: 128px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -239,7 +215,7 @@ button:focus-visible {
   right: clamp(16px, 2.4vw, 36px);
   left: clamp(16px, 2.4vw, 36px);
   display: grid;
-  height: 56px;
+  height: 68px;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 42px;
@@ -260,18 +236,10 @@ button:focus-visible {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.vx-header .vx-brand { gap: 0; color: #fff; }
-.vx-header .vx-brand-mark { display: none; }
-.vx-header .vx-brand-mark i:first-child { background: #fff; }
-
-.vx-header .vx-brand-word strong {
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  text-transform: none;
+.vx-header .vx-brand-logo {
+  height: 56px;
+  max-width: 176px;
 }
-
-.vx-header .vx-brand-word small { color: rgba(255, 255, 255, 0.52); }
 
 .vx-header-center {
   display: flex;
@@ -1084,6 +1052,173 @@ button:focus-visible {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   WHY CHOOSE US + REVIEWS
+═══════════════════════════════════════════════════════════ */
+.vx-why {
+  position: relative;
+  z-index: 3;
+  padding: 72px clamp(24px, 3.5vw, 52px) 28px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(45, 137, 255, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 80%, rgba(14, 96, 201, 0.06), transparent 32%),
+    var(--vx-canvas);
+}
+
+.vx-why-heading {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.vx-why-heading > span {
+  color: var(--vx-blue);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vx-why-heading h2 {
+  margin-top: 12px;
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 720;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+.vx-why-heading p {
+  max-width: 540px;
+  margin-top: 14px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.vx-why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.vx-why-card {
+  min-height: 100%;
+  padding: 22px 20px 24px;
+  border: 1px solid rgba(14, 96, 201, 0.12);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(4, 16, 40, 0.06);
+}
+
+.vx-why-card > span {
+  color: var(--vx-blue);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.vx-why-card h3 {
+  margin-top: 14px;
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 720;
+  letter-spacing: -0.03em;
+}
+
+.vx-why-card p {
+  margin-top: 10px;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.vx-reviews {
+  margin-top: 56px;
+  padding-top: 8px;
+}
+
+.vx-reviews-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.vx-reviews-heading h3 {
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+}
+
+.vx-reviews-heading a,
+.vx-capabilities-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vx-blue);
+  transition: color 180ms ease;
+}
+
+.vx-reviews-heading a:hover,
+.vx-capabilities-heading > a:hover { color: var(--vx-blue-deep); }
+
+.vx-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.vx-review-card {
+  position: relative;
+  margin: 0;
+  padding: 24px 22px 22px;
+  border: 1px solid rgba(14, 96, 201, 0.12);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(4, 16, 40, 0.05);
+}
+
+.vx-review-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+  color: #f59e0b;
+}
+
+.vx-review-quote {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  color: rgba(14, 96, 201, 0.18);
+}
+
+.vx-review-card > p {
+  color: #1e293b;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.vx-review-card footer {
+  display: grid;
+  gap: 3px;
+  margin-top: 18px;
+}
+
+.vx-review-card footer strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.vx-review-card footer span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════
    SERVICES DECK (white section below hero)
 ═══════════════════════════════════════════════════════════ */
 .vx-deck {
@@ -1383,7 +1518,12 @@ button:focus-visible {
   gap: clamp(28px, 5vw, 74px);
 }
 
-.vx-footer-brand p {
+.vx-footer-brand .vx-brand-logo {
+  height: 132px;
+  max-width: 240px;
+  padding: 8px 10px;
+  border-radius: 16px;
+}
   max-width: 260px;
   margin-top: 19px;
   color: rgba(255, 255, 255, 0.46);
