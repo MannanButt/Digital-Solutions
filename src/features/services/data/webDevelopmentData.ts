@@ -1,15 +1,6 @@
-// src/features/services/data/webDevelopmentData.ts
-export type WebDevService = {
-  title: string;
-  slug: string;
-  shortDescription: string;
-  heroSubtitle: string;
-  metrics: { label: string; value: string }[];
-  deliverables: { title: string; desc: string; iconName: string }[];
-  workflowSteps: { step: string; title: string; desc: string }[];
-  techStack: string[];
-  faq: { question: string; answer: string }[];
-};
+import type { ServiceDetail } from "@/src/features/services/types";
+
+export type WebDevService = ServiceDetail;
 
 export const webDevServices: readonly WebDevService[] = [
   /* ───────────────────────── 1. Web & App Engineering ───────────────────────── */

@@ -28,22 +28,9 @@ export default async function DevelopmentDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const detail = {
-    slug: service.slug,
-    title: service.title,
-    eyebrow: service.title,
-    headline: service.heroSubtitle,
-    description: service.shortDescription,
-    metrics: service.metrics,
-    deliverables: service.deliverables,
-    workflowSteps: service.workflowSteps,
-    techStack: service.techStack,
-    faq: service.faq,
-  };
-
   return (
     <ServiceDetailView
-      detail={detail}
+      detail={service}
       backHref="/services/development"
       backLabel="Back to Development"
     />

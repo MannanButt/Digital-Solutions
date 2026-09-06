@@ -26,7 +26,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import type { SubServiceDetail } from "@/src/features/services/data/marketingSeoData";
+import type { ServiceDetail } from "@/src/features/services/types";
 import { ServicePageHeader } from "./ServicePageHeader";
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -53,7 +53,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 };
 
 type ServiceDetailViewProps = {
-  detail: SubServiceDetail;
+  detail: ServiceDetail;
   backHref?: string;
   backLabel?: string;
 };
@@ -77,7 +77,7 @@ export function ServiceDetailView({
         <div className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100 border border-sky-300/60 text-sky-800 text-xs font-bold uppercase tracking-wider mb-6">
             <Sparkles className="w-3.5 h-3.5 text-sky-600" />
-            {detail.eyebrow}
+            {detail.eyebrow || detail.title}
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold text-[#050B14] tracking-tight leading-[1.08] mb-6">
@@ -85,7 +85,7 @@ export function ServiceDetailView({
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed mb-8">
-            {detail.headline} {detail.description}
+            {detail.headline || detail.heroSubtitle} {detail.description || detail.shortDescription}
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
