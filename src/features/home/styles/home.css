@@ -324,6 +324,7 @@ button:focus-visible {
   transform: translateY(-1px);
 }
 
+
 .vx-header-actions button {
   display: grid;
   width: 36px;
@@ -1184,35 +1185,104 @@ button:focus-visible {
   gap: 16px;
 }
 
-.vx-why-card {
-  min-height: 100%;
-  padding: 22px 20px 24px;
-  border: 1px solid rgba(14, 96, 201, 0.12);
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 10px 28px rgba(4, 16, 40, 0.06);
+@keyframes vx-fadeup {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.vx-why-card > span {
+.vx-why-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 26px 22px 24px;
+  border: 1px solid rgba(45, 137, 255, 0.14);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(4, 16, 40, 0.07);
+  overflow: hidden;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  animation: vx-fadeup 520ms ease both;
+}
+
+.vx-why-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(45,137,255,0.04));
+  pointer-events: none;
+  border-radius: inherit;
+  transition: opacity 240ms ease;
+  opacity: 0;
+}
+
+.vx-why-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 52px rgba(14, 96, 201, 0.14);
+  border-color: var(--why-accent, rgba(45, 137, 255, 0.35));
+}
+
+.vx-why-card:hover::before { opacity: 1; }
+
+.vx-why-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  transition: transform 240ms ease;
+}
+
+.vx-why-card:hover .vx-why-card-icon { transform: scale(1.08); }
+
+.vx-why-card-num {
   color: var(--vx-blue);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.7;
 }
 
 .vx-why-card h3 {
-  margin-top: 14px;
   font-family: var(--font-nunito-sans), Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 720;
+  font-size: 17px;
+  font-weight: 730;
   letter-spacing: -0.03em;
+  line-height: 1.2;
 }
 
 .vx-why-card p {
   margin-top: 10px;
   color: #475569;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.vx-why-card-stat {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(14, 96, 201, 0.08);
+}
+
+.vx-why-card-stat strong {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+}
+
+.vx-why-card-stat span {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+  font-weight: 500;
 }
 
 .vx-reviews {
@@ -1259,11 +1329,20 @@ button:focus-visible {
 .vx-review-card {
   position: relative;
   margin: 0;
-  padding: 24px 22px 22px;
-  border: 1px solid rgba(14, 96, 201, 0.12);
+  padding: 26px 22px 22px;
+  border: 1px solid rgba(14, 96, 201, 0.11);
+  border-left: 3px solid var(--vx-blue);
   border-radius: 22px;
   background: #fff;
   box-shadow: 0 10px 28px rgba(4, 16, 40, 0.05);
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  animation: vx-fadeup 540ms ease both;
+}
+
+.vx-review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 52px rgba(14, 96, 201, 0.12);
+  border-left-color: var(--vx-blue-bright);
 }
 
 .vx-review-stars {
@@ -1277,29 +1356,272 @@ button:focus-visible {
   position: absolute;
   top: 22px;
   right: 20px;
-  color: rgba(14, 96, 201, 0.18);
+  color: rgba(14, 96, 201, 0.15);
 }
 
 .vx-review-card > p {
   color: #1e293b;
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .vx-review-card footer {
-  display: grid;
-  gap: 3px;
-  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(14, 96, 201, 0.07);
+}
+
+.vx-review-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vx-blue), var(--vx-blue-bright));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.vx-review-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .vx-review-card footer strong {
   font-size: 13px;
   font-weight: 700;
+  color: #0f172a;
 }
 
 .vx-review-card footer span {
   color: #64748b;
   font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG / INSIGHTS SECTION
+═══════════════════════════════════════════════════════════ */
+.vx-blog {
+  position: relative;
+  z-index: 3;
+  padding: 80px clamp(24px, 3.5vw, 52px) 88px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(45, 137, 255, 0.06), transparent 30%),
+    radial-gradient(circle at 5% 90%, rgba(14, 96, 201, 0.05), transparent 28%),
+    var(--vx-paper);
+}
+
+.vx-blog-heading {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.vx-blog-heading > span {
+  color: var(--vx-blue);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vx-blog-heading h2 {
+  margin-top: 12px;
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  font-size: clamp(30px, 3.5vw, 44px);
+  font-weight: 720;
+  letter-spacing: -0.05em;
+  line-height: 1.06;
+  color: #0f172a;
+}
+
+.vx-blog-heading p {
+  margin-top: 14px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 520px;
+}
+
+.vx-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.vx-blog-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(14, 96, 201, 0.10);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(4, 16, 40, 0.06);
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  animation: vx-fadeup 540ms ease both;
+}
+
+.vx-blog-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 60px rgba(14, 96, 201, 0.14);
+  border-color: rgba(45, 137, 255, 0.3);
+}
+
+.vx-blog-cover {
+  position: relative;
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.vx-blog-cover-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.vx-blog-cover-initials {
+  position: relative;
+  font-size: 42px;
+  font-weight: 900;
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.06em;
+  user-select: none;
+}
+
+.vx-blog-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 20px 20px;
+}
+
+.vx-blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.vx-blog-category {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vx-blue);
+  background: rgba(14, 96, 201, 0.08);
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+.vx-blog-dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.vx-blog-time,
+.vx-blog-meta time {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.vx-blog-body h3 {
+  font-family: var(--font-nunito-sans), Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 730;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.vx-blog-body > p {
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.58;
+  flex: 1;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vx-blog-body footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(14, 96, 201, 0.07);
+  margin-top: auto;
+}
+
+.vx-blog-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vx-blog-author-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0e60c9, #2d89ff);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.vx-blog-author strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vx-blog-author span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.vx-blog-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vx-blue);
+  white-space: nowrap;
+  transition: color 180ms ease, gap 180ms ease;
+}
+
+.vx-blog-cta:hover {
+  color: var(--vx-blue-deep);
+  gap: 8px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2253,3 +2575,40 @@ button:focus-visible {
   background: #00d4ff;
   box-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — Why / Reviews / Blog
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .vx-why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .vx-reviews-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .vx-blog-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .vx-blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .vx-reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .vx-why-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .vx-blog-cover {
+    height: 110px;
+  }
+  .vx-blog-cover-initials {
+    font-size: 32px;
+  }
+}
+

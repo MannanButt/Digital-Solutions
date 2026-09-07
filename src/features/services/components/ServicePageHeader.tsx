@@ -31,8 +31,9 @@ export function ServicePageHeader({
 
       <div className="vx-header-actions">
         <Link href="/#contact" className="vx-header-cta">
-          Book Consultation <ArrowUpRight size={14} aria-hidden="true" />
+          Contact Us <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
+
       </div>
     </header>
   );

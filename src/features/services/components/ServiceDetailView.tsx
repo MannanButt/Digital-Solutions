@@ -206,10 +206,10 @@ export function ServiceDetailView({
             </p>
           </div>
           <Link
-            href="/#contact"
+            href="#contact"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-sky-400 text-slate-950 font-extrabold text-sm hover:bg-sky-300 transition-all shrink-0 shadow-lg"
           >
-            Book Strategy Call <ArrowUpRight className="w-4 h-4" />
+            Contact Us <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       </section>

@@ -40,12 +40,6 @@ export const capabilityCards = [
     alt: "Software professional at a computer",
   },
   {
-    title: "Business Process Automation",
-    copy: "Turn repetitive processes into flow.",
-    image: "/assets/images/home/hero-process.jpg",
-    alt: "Modern office and technology workspace",
-  },
-  {
     title: "Integration Engineering",
     copy: "Connect the systems behind the work.",
     image: "/assets/images/home/hero-integrations.jpg",
@@ -63,18 +57,34 @@ export const whyChooseReasons = [
   {
     title: "Built for production",
     copy: "We ship agents, products, and workflows that hold up in live operations—not demos that stall after the pitch.",
+    icon: "Rocket",
+    stat: "100%",
+    statLabel: "Production delivery rate",
+    accent: "#2d89ff",
   },
   {
     title: "People stay in control",
     copy: "Approvals, guardrails, and clear ownership sit inside every system so automation never outruns your team.",
+    icon: "ShieldCheck",
+    stat: "Zero",
+    statLabel: "Runaway automation incidents",
+    accent: "#38bdf8",
   },
   {
     title: "Works with your stack",
     copy: "CRM, ERP, content, and custom software stay connected. We design around the tools you already run.",
+    icon: "Plug",
+    stat: "50+",
+    statLabel: "Integrations delivered",
+    accent: "#818cf8",
   },
   {
     title: "Outcomes you can measure",
     copy: "Cycle time, cost, conversion, and quality are tracked from day one so growth is visible, not assumed.",
+    icon: "TrendingUp",
+    stat: "4.2×",
+    statLabel: "Average client ROAS lift",
+    accent: "#34d399",
   },
 ] as const;
 
