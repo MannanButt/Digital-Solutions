@@ -67,7 +67,10 @@
 .ds-service-deliverable p { max-width: 500px; margin-top: 10px; color: #62778b; font-size: 14px; line-height: 1.7; }
 .ds-service-process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
 .ds-service-step { position: relative; padding-top: 18px; border-top: 2px solid #83c6f2; }
-.ds-service-step:not(:last-child)::after { content: "→"; position: absolute; top: -21px; right: -22px; color: #2f8cff; font-size: 25px; font-weight: 400; }
+.ds-service-step:not(:last-child)::after { content: ""; position: absolute; top: 27px; right: -29px; width: 38px; height: 1px; background: linear-gradient(90deg, #83c6f2, #2f8cff); transform-origin: left center; animation: ds-connector-flow 2.4s ease-in-out infinite; }
+.ds-service-step:not(:last-child)::before { content: ""; position: absolute; z-index: 1; top: 23px; right: -31px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid #2f8cff; animation: ds-arrow-pulse 2.4s ease-in-out infinite; }
+@keyframes ds-connector-flow { 0%, 100% { opacity: .5; transform: scaleX(.82); } 50% { opacity: 1; transform: scaleX(1); } }
+@keyframes ds-arrow-pulse { 0%, 100% { opacity: .55; transform: translateX(-2px); } 50% { opacity: 1; transform: translateX(2px); } }
 .ds-service-step-number { color: #0b73c7; font-size: 12px; font-weight: 850; letter-spacing: .14em; }
 .ds-service-step h3 { margin-top: 26px; color: #102b47; font-size: 17px; }
 .ds-service-step p { margin-top: 10px; color: #62778b; font-size: 14px; line-height: 1.65; }
@@ -116,7 +119,7 @@
   .ds-service-section-intro { margin-top: 16px; }
   .ds-service-hub-grid, .ds-service-deliverables { grid-template-columns: 1fr; gap: 0; }
   .ds-service-process { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
-  .ds-service-step:not(:last-child)::after { display: none; }
+  .ds-service-step:not(:last-child)::after, .ds-service-step:not(:last-child)::before { display: none; }
   .ds-service-split { grid-template-columns: 1fr; gap: 52px; }
   .ds-service-cta { display: block; margin-bottom: 64px; padding: 32px 26px; }
   .ds-service-cta .ds-service-primary { margin-top: 24px; }
@@ -131,5 +134,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-service-header-cta, .ds-service-primary, .ds-service-secondary, .ds-service-hub-card, .ds-service-hub-card-link, .ds-service-tech-grid span, .ds-service-modal-backdrop, .ds-service-modal { transition: none; animation: none; }
+  .ds-service-header-cta, .ds-service-primary, .ds-service-secondary, .ds-service-hub-card, .ds-service-hub-card-link, .ds-service-tech-grid span, .ds-service-modal-backdrop, .ds-service-modal, .ds-service-step:not(:last-child)::after, .ds-service-step:not(:last-child)::before { transition: none; animation: none; }
 }

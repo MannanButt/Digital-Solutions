@@ -36,6 +36,16 @@ const ICON_MAP: Record<string, React.ElementType> = {
   TrendingUp, Mail, Users, PieChart, Database, BarChart3, LineChart, Bell, Brain,
 };
 
+function formatMetric(metric: { value: string; label: string }) {
+  if (metric.value.toLowerCase().includes("faster")) {
+    return {
+      value: metric.value.replace(/\s*faster/i, "").replace(/x/g, "×"),
+      label: "Faster operations",
+    };
+  }
+  return { value: metric.value.replace(/x/g, "×"), label: metric.label };
+}
+
 type ServiceDetailViewProps = { detail: ServiceDetail; heroImage?: string };
 
 export function ServiceDetailView({ detail, heroImage = "/assets/images/home/hero-workflow.jpg" }: ServiceDetailViewProps) {
@@ -72,8 +82,8 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
           <div className="ds-service-hero-stats" aria-label="Service outcomes">
             {detail.metrics.map((metric) => (
               <div key={metric.label} className="ds-service-hero-stat">
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
+                <strong>{formatMetric(metric).value}</strong>
+                <span>{formatMetric(metric).label}</span>
               </div>
             ))}
           </div>
