@@ -35,15 +35,15 @@ const ICON_MAP: Record<string, React.ElementType> = {
   TrendingUp, Mail, Users, PieChart, Database, BarChart3, LineChart, Bell, Brain,
 };
 
-type ServiceDetailViewProps = { detail: ServiceDetail };
+type ServiceDetailViewProps = { detail: ServiceDetail; heroImage?: string };
 
-export function ServiceDetailView({ detail }: ServiceDetailViewProps) {
+export function ServiceDetailView({ detail, heroImage = "/assets/images/home/hero-workflow.jpg" }: ServiceDetailViewProps) {
   return (
     <div className="ds-services-page">
       <ServicePageHeader backHref="/#services" backLabel="Back to Services" />
 
-      <section className="ds-service-hero">
-        <div>
+      <section className="ds-service-detail-hero" style={{ backgroundImage: `url(${heroImage})` }}>
+        <div className="ds-service-detail-hero-inner">
           <span className="ds-service-kicker">{detail.eyebrow || "Digital Solutions service"}</span>
           <h1>{detail.title}</h1>
           <p className="ds-service-hero-lede">{detail.heroSubtitle || detail.headline}</p>
@@ -52,20 +52,15 @@ export function ServiceDetailView({ detail }: ServiceDetailViewProps) {
             <Link href="/#contact" className="ds-service-primary">Start a conversation <ArrowRight size={16} /></Link>
             <Link href="#deliverables" className="ds-service-secondary">View deliverables</Link>
           </div>
-        </div>
-
-        <aside className="ds-service-brief" aria-label="Service outcomes">
-          <span className="ds-service-brief-label">Engagement snapshot</span>
-          <h2>What success looks like</h2>
-          <div className="ds-service-metrics">
+          <div className="ds-service-hero-stats" aria-label="Service outcomes">
             {detail.metrics.map((metric) => (
-              <div key={metric.label} className="ds-service-metric">
+              <div key={metric.label} className="ds-service-hero-stat">
                 <strong>{metric.value}</strong>
                 <span>{metric.label}</span>
               </div>
             ))}
           </div>
-        </aside>
+        </div>
       </section>
 
       <section id="deliverables" className="ds-service-section">

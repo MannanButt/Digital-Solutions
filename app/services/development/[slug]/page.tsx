@@ -28,5 +28,5 @@ export default async function DevelopmentDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return <ServiceDetailView detail={service} />;
+  return <ServiceDetailView detail={service} heroImage="/assets/images/services/menu-development.jpg" />;
 }

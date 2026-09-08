@@ -30,5 +30,5 @@ export default async function MarketingSeoSubServicePage({ params }: PageProps) 
     notFound();
   }
 
-  return <ServiceDetailView detail={detail} />;
+  return <ServiceDetailView detail={detail} heroImage="/assets/images/services/menu-marketing-seo.jpg" />;
 }
