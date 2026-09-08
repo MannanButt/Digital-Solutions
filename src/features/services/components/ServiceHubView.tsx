@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { HelpCircle, ArrowRight, ArrowUpRight } from "lucide-react";
 import PrimaryButton from "@/src/components/ui/PrimaryButton";
-import { ServicePageHeader } from "./ServicePageHeader";
 import type { HubPageConfig } from "@/src/features/services/types";
 
 export function ServiceHubView({ config }: { config: HubPageConfig }) {
@@ -19,10 +18,6 @@ export function ServiceHubView({ config }: { config: HubPageConfig }) {
 
   return (
     <div className="vx-page min-h-screen bg-[#F4F9FF] text-[#050B14]">
-      <div className="pt-4 px-4 sm:px-8">
-        <ServicePageHeader backHref="/" backLabel="Back to Home" />
-      </div>
-
       {/* Hero Header */}
       <section className="pt-12 pb-20 px-6 sm:px-12 max-w-7xl mx-auto relative">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 border border-sky-300 text-sky-800 text-xs font-bold uppercase tracking-wider mb-6">

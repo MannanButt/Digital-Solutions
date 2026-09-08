@@ -2,17 +2,15 @@
 "use client";
 
 import Link from "next/link";
+import * as LucideIcons from "lucide-react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import type { ElementType } from "react";
 import type { WebDevService } from "@/src/features/services/data/webDevelopmentData";
-import { ServicePageHeader } from "./ServicePageHeader";
+import { ServiceDeliverables, ServiceTimeline } from "./ServiceContent";
 
 export function WebDevDetailView({ detail }: { detail: WebDevService }) {
   return (
     <div className="vx-page min-h-screen bg-[#F4F9FF] text-[#050B14]">
-      <div className="pt-4 px-4 sm:px-8">
-        <ServicePageHeader backHref="/services/web-development" backLabel="Back to Web Development" />
-      </div>
-
       {/* Hero Section */}
       <section className="relative pt-12 pb-20 px-6 sm:px-12 max-w-7xl mx-auto overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
@@ -37,15 +35,6 @@ export function WebDevDetailView({ detail }: { detail: WebDevService }) {
             </Link>
           </div>
         </div>
-        {/* Metrics Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 pt-10 border-t border-sky-200/80">
-          {detail.metrics.map((m) => (
-            <div key={m.label} className="p-6 rounded-2xl bg-white/80 backdrop-blur border border-sky-100 shadow-sm">
-              <div className="text-3xl sm:text-4xl font-extrabold text-sky-600 tracking-tight mb-1">{m.value}</div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">{m.label}</div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Deliverables Grid */}
@@ -54,22 +43,10 @@ export function WebDevDetailView({ detail }: { detail: WebDevService }) {
           <span className="text-xs font-bold uppercase tracking-widest text-sky-600">What We Build & Deliver</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#050B14] mt-2">Core Capabilities & Output</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {detail.deliverables.map((item) => {
-            const Icon = (require("lucide-react")[item.iconName] as any) ?? ArrowRight;
-            return (
-              <div key={item.title} className="group p-8 rounded-3xl bg-white border border-sky-100 shadow-sm hover:shadow-md hover:border-sky-300 transition-all">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:bg-sky-500 group-hover:text-white transition-colors">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-[#050B14] mb-3 group-hover:text-sky-600 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            );
-          })}
-        </div>
+        <ServiceDeliverables
+          items={detail.deliverables}
+          getIcon={(iconName) => (LucideIcons[iconName as keyof typeof LucideIcons] as ElementType) ?? ArrowRight}
+        />
       </section>
 
       {/* Workflow Steps */}
@@ -79,15 +56,7 @@ export function WebDevDetailView({ detail }: { detail: WebDevService }) {
             <span className="text-xs font-bold uppercase tracking-widest text-sky-600">Implementation Process</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#050B14] mt-2">How We Execute</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {detail.workflowSteps.map((step) => (
-              <div key={step.step} className="p-6 rounded-2xl bg-[#F4F9FF] border border-sky-100 relative">
-                <span className="text-xs font-black text-sky-500 tracking-widest mb-3 block">{step.step}</span>
-                <h4 className="text-base font-bold text-[#050B14] mb-2">{step.title}</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+          <ServiceTimeline steps={detail.workflowSteps} />
         </div>
       </section>
 

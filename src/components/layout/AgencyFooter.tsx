@@ -1,28 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { Linkedin, Mail, Globe2, Phone, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { Linkedin, Instagram, Facebook, Globe2, Mail, Phone, ArrowUpRight } from "lucide-react";
 import { Brand } from "@/src/components/brand/Brand";
 import "@/src/features/home/styles/footer.css";
 
 export function AgencyFooter() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail("");
-    }
-  };
-
   return (
     <footer className="vx-agency-footer" id="contact">
       <div className="vx-agency-footer-inner">
         <div className="vx-agency-footer-grid">
-          {/* Column 1: Contact Us & Brand */}
+          {/* Column 1: Contact Us & Brand & Social Icons */}
           <div className="vx-footer-col-contact">
             <div style={{ marginBottom: "18px" }}>
               <Brand />
@@ -32,16 +21,30 @@ export function AgencyFooter() {
 
             <div className="vx-footer-contact-info">
               <a href="mailto:hello@digitalsolutions.ai" className="vx-footer-contact-link">
-                <Mail size={15} /> hello@digitalsolutions.ai
+                <Mail size={16} /> hello@digitalsolutions.ai
               </a>
               <a href="tel:+14087094469" className="vx-footer-contact-link">
-                <Phone size={15} /> +1 408-709-4469
+                <Phone size={16} /> +1 408-709-4469
               </a>
             </div>
 
+            <div className="vx-footer-social-icons">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="vx-footer-social-btn" aria-label="LinkedIn">
+                <Linkedin size={16} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="vx-footer-social-btn" aria-label="Instagram">
+                <Instagram size={16} />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="vx-footer-social-btn" aria-label="Facebook">
+                <Facebook size={16} />
+              </a>
+              <a href="#top" className="vx-footer-social-btn" aria-label="Website">
+                <Globe2 size={16} />
+              </a>
+            </div>
           </div>
 
-          {/* Column 2: Development Services */}
+          {/* Column 2: Development */}
           <div className="vx-footer-col">
             <h4>Development</h4>
             <ul>
@@ -65,61 +68,28 @@ export function AgencyFooter() {
             </ul>
           </div>
 
-          {/* Column 4: Marketing & Design */}
+          {/* Column 4: Marketing & SEO (Separated) */}
           <div className="vx-footer-col">
-            <h4>Marketing &amp; Design</h4>
+            <h4>Marketing &amp; SEO</h4>
             <ul>
               <li><Link href="/services/marketing-seo">Meta &amp; Google Ads</Link></li>
               <li><Link href="/services/marketing-seo">Technical SEO</Link></li>
-              <li><Link href="/services/design">UX &amp; UI Design</Link></li>
-              <li><Link href="/services/design">Product Strategy</Link></li>
-              <li><Link href="/#blog">Insights &amp; Articles</Link></li>
+              <li><Link href="/services/marketing-seo">Performance Marketing</Link></li>
+              <li><Link href="/services/marketing-seo">Conversion Funnels</Link></li>
+              <li><Link href="/services/marketing-seo">Growth Strategy</Link></li>
             </ul>
-
-            <div className="vx-footer-contact-details">
-              <strong>HQ &amp; Remote Delivery</strong>
-              <a href="tel:+14087094469">+1 408-709-4469</a>
-              <a href="mailto:hello@digitalsolutions.ai">hello@digitalsolutions.ai</a>
-            </div>
           </div>
 
-          {/* Column 5: Stay Ahead / Newsletter */}
-          <div className="vx-footer-col vx-footer-col-subscribe">
-            <h4>Sign Up &amp; Save</h4>
-            <p>
-              Join our list for proven digital strategies, growth hacks, and AI automation insights.
-            </p>
-
-            {subscribed ? (
-              <div style={{ padding: "12px", background: "rgba(14, 96, 201, 0.2)", border: "1px solid var(--vx-blue-bright)", borderRadius: "6px", color: "#e0f2fe", fontSize: "13px", display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-                <CheckCircle2 size={16} color="var(--vx-blue-bright)" />
-                <span>Thanks for subscribing! Check your inbox soon.</span>
-              </div>
-            ) : (
-              <form className="vx-footer-newsletter-form" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  placeholder="Enter Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  aria-label="Email address for newsletter"
-                />
-                <button type="submit">Subscribe</button>
-              </form>
-            )}
-
-            <div className="vx-footer-social-icons">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="vx-footer-social-btn" aria-label="LinkedIn">
-                <Linkedin size={15} />
-              </a>
-              <a href="mailto:hello@digitalsolutions.ai" className="vx-footer-social-btn" aria-label="Email Digital Solutions">
-                <Mail size={15} />
-              </a>
-              <a href="#top" className="vx-footer-social-btn" aria-label="Digital Solutions Global">
-                <Globe2 size={15} />
-              </a>
-            </div>
+          {/* Column 5: Product Design (Separated) */}
+          <div className="vx-footer-col">
+            <h4>Product Design</h4>
+            <ul>
+              <li><Link href="/services/design">UX &amp; UI Design</Link></li>
+              <li><Link href="/services/design">Figma Systems</Link></li>
+              <li><Link href="/services/design">Product Strategy</Link></li>
+              <li><Link href="/services/design">Interactive Prototypes</Link></li>
+              <li><Link href="/services/design">Design Tokens</Link></li>
+            </ul>
           </div>
         </div>
 

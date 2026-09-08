@@ -28,11 +28,5 @@ export default async function AIAutomationDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return (
-    <ServiceDetailView
-      detail={service}
-      backHref="/services/ai-automation"
-      backLabel="Back to AI Automation"
-    />
-  );
+  return <ServiceDetailView detail={service} />;
 }

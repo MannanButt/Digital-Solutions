@@ -104,6 +104,133 @@ const siteSearchItems: SiteSearchItem[] = [
   items.findIndex((candidate) => candidate.title.toLocaleLowerCase() === item.title.toLocaleLowerCase()) === index
 ));
 
+const processSteps = [
+  {
+    step: "01",
+    title: "Identify",
+    shortCopy: "We surface the highest value AI opportunities, the ones you cannot see yet.",
+    heading: "From whiteboard to production.",
+    description: "Every engagement starts by mapping your reality to the highest value AI opportunities, so by the time we build, we already know exactly what will move the needle.",
+    cmdLogs: [
+      { text: "$ Digital Solutions deployment process", type: "cmd" },
+      { text: "✓ Requirements mapped", type: "done" },
+      { text: "✓ Architecture designed", type: "done" },
+      { text: "→ Surfacing high-value AI opportunities..", type: "active" },
+      { text: "• Live in discovery", type: "live" },
+    ],
+    features: ["Workflow Opportunity Mapping", "ROI & Impact Modeling", "Custom AI Feasibility Assessment"],
+  },
+  {
+    step: "02",
+    title: "Design",
+    shortCopy: "We architect the solution around your reality, not a template.",
+    heading: "Tailored AI & System Architecture.",
+    description: "We design custom guardrails, human-in-the-loop approvals, and secure API architecture so every workflow fits seamlessly inside your team's stack.",
+    cmdLogs: [
+      { text: "$ Digital Solutions architecture process", type: "cmd" },
+      { text: "✓ Operational guardrails defined", type: "done" },
+      { text: "✓ Security & privacy compliance checked", type: "done" },
+      { text: "→ Designing custom system specs..", type: "active" },
+      { text: "• System blueprint ready", type: "live" },
+    ],
+    features: ["Human-in-the-Loop Guardrails", "Security & Compliance Audits", "Enterprise Architecture Blueprint"],
+  },
+  {
+    step: "03",
+    title: "Build",
+    shortCopy: "We build it AI natively, by people who build with AI.",
+    heading: "Native AI Development & Integration.",
+    description: "Full-stack development, agentic workflows, RAG engines, and cloud software built with sub-second execution speed and enterprise governance.",
+    cmdLogs: [
+      { text: "$ Digital Solutions build & test runner", type: "cmd" },
+      { text: "✓ Next.js & Node services compiled", type: "done" },
+      { text: "✓ Agents trained & tested in sandbox", type: "done" },
+      { text: "→ Integrating APIs & vector stores..", type: "active" },
+      { text: "• Build passed all integration suites", type: "live" },
+    ],
+    features: ["Autonomous AI & RAG Agents", "Sub-Second Latency Cloud APIs", "Full-Stack Web & Mobile Apps"],
+  },
+  {
+    step: "04",
+    title: "Implement",
+    shortCopy: "We put it to work, deployed into real operations and measured.",
+    heading: "Smooth Operational Rollout.",
+    description: "Staging validation, permission controls, webhooks, and telemetry are wired together so live production launches reliably without disrupting existing workflows.",
+    cmdLogs: [
+      { text: "$ Digital Solutions deployment pipeline", type: "cmd" },
+      { text: "✓ Staging validation completed", type: "done" },
+      { text: "✓ Team permissions & webhooks set", type: "done" },
+      { text: "→ Deploying to production environment..", type: "active" },
+      { text: "• Live in production", type: "live" },
+    ],
+    features: ["Zero-Downtime Deployment", "Real-Time Telemetry & Dashboards", "Automated Fail-Safe Retries"],
+  },
+  {
+    step: "05",
+    title: "Enable",
+    shortCopy: "We train your people to own it, so value compounds after we leave.",
+    heading: "Team Empowerment & Compounding ROI.",
+    description: "We train your team to operate, govern, and monitor the intelligent systems, ensuring performance scales long after initial deployment.",
+    cmdLogs: [
+      { text: "$ Digital Solutions enablement module", type: "cmd" },
+      { text: "✓ Documentation & SOPs generated", type: "done" },
+      { text: "✓ Internal team training completed", type: "done" },
+      { text: "→ Handoff completed & telemetry live..", type: "active" },
+      { text: "● Live in production & compounding ROI", type: "live" },
+    ],
+    features: ["Comprehensive Team SOPs", "Interactive Handoff Training", "Long-Term Value Compounding"],
+  },
+];
+
+const featuredProjects = [
+  {
+    id: "proj-1",
+    title: "AI Operations Automation",
+    category: "AI AUTOMATION",
+    client: "Operations workflow",
+    description: "An intelligent automation system that handles repetitive operational work, routes requests, and gives the team a clear view of every task.",
+    image: "/assets/images/home/hero-workflow.jpg",
+    stats: "85% Less Manual Work",
+    tags: ["AI Agents", "Workflow Automation", "Integrations"],
+    accent: "#38bdf8",
+  },
+  {
+    id: "proj-2",
+    title: "High-Performance Business Website",
+    category: "WEB DEVELOPMENT",
+    client: "Digital growth platform",
+    description: "A fast, modern website designed to present the brand clearly, turn visitors into qualified enquiries, and scale with the business.",
+    image: "/assets/images/home/hero-integrations.jpg",
+    stats: "Built for Conversion",
+    tags: ["Next.js", "UI/UX Design", "SEO Ready"],
+    accent: "#0ea5e9",
+  },
+  {
+    id: "proj-3",
+    title: "High-ROAS E-Commerce Engine",
+    category: "MARKETING & SEO",
+    client: "Lumen & Co. Growth",
+    description: "Integrated Meta & Google Ads conversion funnel paired with technical SEO architecture that scaled monthly revenue by 4.2×.",
+    image: "/assets/images/home/hero-process.jpg",
+    stats: "4.2× ROAS Revenue Lift",
+    tags: ["Meta Ads", "Google Ads", "Organic SEO"],
+    accent: "#60a5fa",
+  },
+  {
+    id: "proj-4",
+    title: "Healthcare SaaS UI/UX Ecosystem",
+    category: "PRODUCT DESIGN",
+    client: "CarePulse Health",
+    description: "Enterprise Figma design system and accessible patient telemetry dashboard boosting user conversion and retention by 45%.",
+    image: "/assets/images/home/hero-customer.jpg",
+    stats: "+45% User Conversion",
+    tags: ["Figma Systems", "UI/UX Architecture", "Design Tokens"],
+    accent: "#818cf8",
+  },
+];
+
+const showAdditionalHeroServices = false;
+
 export default function HomePage() {
   const [activeHero, setActiveHero] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -111,7 +238,26 @@ export default function HomePage() {
   const [activeServiceGroup, setActiveServiceGroup] = useState(0);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [activeReviewPage, setActiveReviewPage] = useState(0);
+  const [reviewsPaused, setReviewsPaused] = useState(false);
   const touchStart = useRef<number | null>(null);
+  const reviewTouchStart = useRef<number | null>(null);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveProcessStep((current) => (current + 1) % processSteps.length);
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (reviewsPaused) return;
+    const timer = window.setInterval(() => {
+      setActiveReviewPage((current) => (current + 1) % 2);
+    }, 6000);
+    return () => window.clearInterval(timer);
+  }, [reviewsPaused]);
   const headerRef = useRef<HTMLElement | null>(null);
   const servicesTriggerRef = useRef<HTMLButtonElement | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -306,6 +452,14 @@ export default function HomePage() {
                   Services <ChevronDown size={13} aria-hidden="true" />
                 </button>
                 <a
+                  href="#projects"
+                  onPointerEnter={() => setServicesOpen(false)}
+                  onFocus={() => setServicesOpen(false)}
+                  onClick={() => { setServicesOpen(false); closeSearch(); }}
+                >
+                  PROJECTS
+                </a>
+                <a
                   href="#why"
                   onPointerEnter={() => setServicesOpen(false)}
                   onFocus={() => setServicesOpen(false)}
@@ -466,8 +620,7 @@ export default function HomePage() {
                       />
                     ))}
                   </div>
-                  <div className="vx-mega-preview-shade" aria-hidden="true" />
-                  <div className="vx-mega-preview-copy">
+                                    <div className="vx-mega-preview-copy">
                     <span>{activeMenuGroup.eyebrow}</span>
                     <h2>{activeMenuGroup.title}</h2>
                     <p>{activeMenuGroup.description}</p>
@@ -525,166 +678,241 @@ export default function HomePage() {
               <h1><i>Smart Solutions.</i><i>Digital Growth.</i></h1>
               <p>We architect full-stack digital solutions—from autonomous AI agents and enterprise web applications to conversion-focused UI/UX design and high-ROAS Meta &amp; Google marketing funnels.</p>
               <div className="vx-frost-actions">
-                <a href="#services" className="vx-frost-actions"><span>Explore 4 Core Services </span><ArrowRight size={15} aria-hidden="true" /></a>
-              <a href="#contact" className="vx-frost-actions"><span>Contact Us </span><ArrowRight size={15} aria-hidden="true" /></a>
+                <a href="#services" className="vx-frost-actions"><span>Explore Our Services </span><ArrowRight size={15} aria-hidden="true" /></a>
+                <a href="#contact" className="vx-frost-actions"><span>Contact Us </span><ArrowRight size={15} aria-hidden="true" /></a>
               </div>
             </div>
 
-            <div className="vx-hero-services-grid" aria-label="Our 4 Core Service Capabilities">
-              {/* Service 1: AI Automation */}
-              <a href="/services/ai-automation" className="vx-hero-service-card" title="Explore AI Automation">
-                <div className="vx-hsc-top">
-                  <span className="vx-hsc-badge">
-                    <span className="vx-hsc-dot" />
-                    01 • AI AUTOMATION
-                  </span>
-                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
-                </div>
-                <h4>Autonomous Workflow Agents</h4>
-                <div className="vx-hsc-metric">40% Lower Cost • 24/7 Execution</div>
-                <div className="vx-hsc-tags">
-                  <span className="vx-hsc-tag">Copilots</span>
-                  <span className="vx-hsc-tag">RAG Agents</span>
-                  <span className="vx-hsc-tag">Docs AI</span>
-                </div>
-              </a>
 
-              {/* Service 2: Development */}
-              <a href="/services/development" className="vx-hero-service-card" title="Explore Development">
-                <div className="vx-hsc-top">
-                  <span className="vx-hsc-badge" style={{ color: "#38bdf8" }}>
-                    <span className="vx-hsc-dot" style={{ background: "#38bdf8" }} />
-                    02 • DEVELOPMENT
-                  </span>
-                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
-                </div>
-                <h4>Next-Gen Web &amp; App Systems</h4>
-                <div className="vx-hsc-metric">Sub-Second Latency • Cloud SLA</div>
-                <div className="vx-hsc-tags">
-                  <span className="vx-hsc-tag">Next.js / React</span>
-                  <span className="vx-hsc-tag">DevOps</span>
-                  <span className="vx-hsc-tag">APIs</span>
-                </div>
-              </a>
 
-              {/* Service 3: Marketing & SEO */}
-              <a href="/services/marketing-seo" className="vx-hero-service-card" title="Explore Marketing & SEO">
-                <div className="vx-hsc-top">
-                  <span className="vx-hsc-badge" style={{ color: "#60a5fa" }}>
-                    <span className="vx-hsc-dot" style={{ background: "#60a5fa" }} />
-                    03 • MARKETING &amp; SEO
-                  </span>
-                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
-                </div>
-                <h4>Meta &amp; Google Ads Engine</h4>
-                <div className="vx-hsc-metric">4.2× Target ROAS • Organic SEO</div>
-                <div className="vx-hsc-tags">
-                  <span className="vx-hsc-tag">Meta Ads</span>
-                  <span className="vx-hsc-tag">Google Ads</span>
-                  <span className="vx-hsc-tag">Funnels</span>
-                </div>
-              </a>
-
-              {/* Service 4: Design */}
-              <a href="/services/design" className="vx-hero-service-card" title="Explore Design Services">
-                <div className="vx-hsc-top">
-                  <span className="vx-hsc-badge" style={{ color: "#818cf8" }}>
-                    <span className="vx-hsc-dot" style={{ background: "#818cf8" }} />
-                    04 • PRODUCT DESIGN
-                  </span>
-                  <ArrowUpRight size={14} className="vx-hsc-arrow" aria-hidden="true" />
-                </div>
-                <h4>UX/UI &amp; Scalable Systems</h4>
-                <div className="vx-hsc-metric">+45% Conversion Lift • Figma</div>
-                <div className="vx-hsc-tags">
-                  <span className="vx-hsc-tag">Figma Systems</span>
-                  <span className="vx-hsc-tag">Prototypes</span>
-                  <span className="vx-hsc-tag">Tokens</span>
-                </div>
-              </a>
+            <div className="vx-hero-controls" aria-label="Hero image controls">
+              <button type="button" onClick={() => changeHero(-1)} aria-label="Previous hero image">
+                <ChevronLeft size={18} aria-hidden="true" />
+              </button>
+              <div className="vx-hero-dots">
+                {heroImages.map((image, index) => (
+                  <button
+                    type="button"
+                    className={index === activeHero ? "is-active" : ""}
+                    onClick={() => setActiveHero(index)}
+                    aria-label={`Show hero image ${index + 1}`}
+                    aria-current={index === activeHero ? "true" : undefined}
+                    key={image.src}
+                  />
+                ))}
+              </div>
+              <button type="button" onClick={() => changeHero(1)} aria-label="Next hero image">
+                <ChevronRight size={18} aria-hidden="true" />
+              </button>
             </div>
-          </div>
-
-          <div className="vx-hero-controls" aria-label="Hero image controls">
-            <button type="button" onClick={() => changeHero(-1)} aria-label="Previous hero image">
-              <ChevronLeft size={18} aria-hidden="true" />
-            </button>
-            <div className="vx-hero-dots">
-              {heroImages.map((image, index) => (
-                <button
-                  type="button"
-                  className={index === activeHero ? "is-active" : ""}
-                  onClick={() => setActiveHero(index)}
-                  aria-label={`Show hero image ${index + 1}`}
-                  aria-current={index === activeHero ? "true" : undefined}
-                  key={image.src}
-                />
-              ))}
-            </div>
-            <button type="button" onClick={() => changeHero(1)} aria-label="Next hero image">
-              <ChevronRight size={18} aria-hidden="true" />
-            </button>
           </div>
         </section>
 
         {/* Agency Brand & Ecosystem Marquee Bar */}
         <BrandBar />
 
-        <section className="vx-why" id="why" aria-labelledby="why-title">
-          <div className="vx-why-heading">
-            <span>Why Digital Solutions</span>
-            <h2 id="why-title">WHY US</h2>
-            <p>We pair intelligent systems with the operational discipline to make them useful—across automation, products, marketing, and design.</p>
-          </div>
+        <section className="vx-process-section" id="why" aria-labelledby="why-title">
+          <div className="vx-process-inner">
+            {/* Timeline Process Stepper Header */}
+            <div className="vx-process-stepper-wrap">
+              <div className="vx-process-top-controls">
+                <span className="vx-process-eyebrow" id="why-title">WHY DIGITAL SOLUTIONS</span>
+              </div>
 
-          <div className="vx-why-grid">
-            {whyChooseReasons.map((reason, index) => (
-              <article
-                className="vx-why-card"
-                key={reason.title}
-                style={{ animationDelay: `${index * 110}ms`, "--why-accent": reason.accent } as React.CSSProperties}
-              >
-                <div className="vx-why-card-icon" style={{ background: `${reason.accent}22`, color: reason.accent }}>
-                  {whyIcons[reason.icon]}
-                </div>
-                <div className="vx-why-card-num">{String(index + 1).padStart(2, "0")}</div>
-                <h3>{reason.title}</h3>
-                <p>{reason.copy}</p>
-                <div className="vx-why-card-stat">
-                  <strong style={{ color: reason.accent }}>{reason.stat}</strong>
-                  <span>{reason.statLabel}</span>
-                </div>
-              </article>
-            ))}
-          </div>
+              <div className="vx-process-timeline-bar" aria-hidden="true">
+                <div
+                  className="vx-process-glowing-dot"
+                  style={{ left: `${(activeProcessStep / (processSteps.length - 1)) * 100}%` }}
+                />
+              </div>
 
-          <div className="vx-reviews" aria-labelledby="reviews-title">
-            <div className="vx-reviews-heading">
-              <h3 id="reviews-title">What our clients say</h3>
-              <Link href="/reviews">All client reviews <ArrowRight size={15} aria-hidden="true" /></Link>
+              <div className="vx-process-steps-row">
+                {processSteps.map((step, idx) => (
+                  <button
+                    type="button"
+                    key={step.step}
+                    className={`vx-process-step-node${idx === activeProcessStep ? " is-active" : ""}${idx < activeProcessStep ? " is-completed" : ""}`}
+                    onClick={() => setActiveProcessStep(idx)}
+                    aria-label={`Step ${step.step}: ${step.title}`}
+                  >
+                    <div className="vx-process-circle">
+                      <span>{step.step}</span>
+                    </div>
+                    <div className="vx-process-step-info">
+                      <strong>{step.title}</strong>
+                      <p>{step.shortCopy}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="vx-reviews-grid">
-              {clientReviews.map((review, idx) => (
-                <blockquote className="vx-review-card" key={review.name} style={{ animationDelay: `${idx * 120}ms` }}>
-                  <div className="vx-review-stars" aria-label="5 out of 5 stars">
-                    {Array.from({ length: 5 }, (_, starIndex) => (
-                      <Star key={starIndex} size={13} fill="currentColor" aria-hidden="true" />
+            {/* Sliding Practice Step Cards Deck (Slides smoothly like Hero Section cards) */}
+            <div className="vx-process-cards-viewport">
+              <div 
+                className="vx-process-cards-track"
+                style={{ transform: `translateX(-${activeProcessStep * 100}%)` }}
+              >
+                {processSteps.map((stepItem) => (
+                  <div key={stepItem.step} className="vx-process-card-slide">
+                    <div className="vx-process-practice-grid">
+                      {/* Left Column: Terminal Execution Box */}
+                      <div className="vx-process-terminal-card">
+                        <div className="vx-terminal-header">
+                          <span className="vx-terminal-dot" />
+                          <span className="vx-terminal-title">digital-solutions · {stepItem.title.toLowerCase()} process</span>
+                        </div>
+                        <div className="vx-terminal-body">
+                          {stepItem.cmdLogs.map((log, lIdx) => (
+                            <div key={lIdx} className={`vx-terminal-line vx-terminal-line--${log.type}`}>
+                              {log.text}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right Column: In Practice Copy */}
+                      <div className="vx-process-practice-copy">
+                        <div className="vx-practice-top-tag">
+                          <span className="vx-practice-badge">— IN PRACTICE</span>
+                          <span className="vx-practice-step-num">PHASE {stepItem.step} OF 05</span>
+                        </div>
+                        <h3>{stepItem.heading}</h3>
+                        <p>{stepItem.description}</p>
+
+                        <div className="vx-practice-feature-list">
+                          {stepItem.features.map((feat) => (
+                            <div className="vx-practice-feature-item" key={feat}>
+                              <span className="vx-feature-check">✓</span>
+                              <span>{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="vx-process-card-controls">
+              <button
+                type="button"
+                className="vx-process-nav-btn"
+                onClick={() => setActiveProcessStep((prev) => (prev - 1 + processSteps.length) % processSteps.length)}
+                aria-label="Previous process step"
+              >
+                <ChevronLeft size={18} aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="vx-process-nav-btn"
+                onClick={() => setActiveProcessStep((prev) => (prev + 1) % processSteps.length)}
+                aria-label="Next process step"
+              >
+                <ChevronRight size={18} aria-hidden="true" />
+              </button>
+            </div>
+
+            {/* Client Reviews Section (3 Cards Per Row, 6 Total Reviews) */}
+            <div 
+              className="vx-reviews-slider-section" 
+              aria-labelledby="reviews-title"
+              onMouseEnter={() => setReviewsPaused(true)}
+              onMouseLeave={() => setReviewsPaused(false)}
+            >
+              <div className="vx-reviews-header">
+                <div>
+                  <span className="vx-reviews-eyebrow">CLIENT TESTIMONIALS</span>
+                  <h3 id="reviews-title">What our clients say</h3>
+                </div>
+              </div>
+
+              {/* 3 Cards Per Row Carousel Track */}
+              <div className="vx-reviews-grid-viewport">
+                <div 
+                  className="vx-reviews-pages-track"
+                  style={{ transform: `translateX(-${activeReviewPage * 100}%)` }}
+                >
+                  {/* Page 1 (Cards 0, 1, 2) */}
+                  <div className="vx-reviews-page-grid">
+                    {clientReviews.slice(0, 3).map((review) => (
+                      <blockquote className="vx-review-card-sky" key={review.name}>
+                        <div className="vx-review-stars" aria-label="5 out of 5 stars">
+                          {Array.from({ length: 5 }, (_, starIndex) => (
+                            <Star key={starIndex} size={14} fill="currentColor" aria-hidden="true" />
+                          ))}
+                        </div>
+                        <p>“{review.quote}”</p>
+                        <footer>
+                          <div className="vx-review-avatar-sky" aria-hidden="true">
+                            {review.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                          </div>
+                          <div className="vx-review-author-info">
+                            <strong>{review.name}</strong>
+                            <span>{review.role}, {review.company}</span>
+                          </div>
+                        </footer>
+                      </blockquote>
                     ))}
                   </div>
-                  <Quote className="vx-review-quote" size={22} aria-hidden="true" />
-                  <p>{review.quote}</p>
-                  <footer>
-                    <div className="vx-review-avatar" aria-hidden="true">
-                      {review.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-                    </div>
-                    <div className="vx-review-author-info">
-                      <strong>{review.name}</strong>
-                      <span>{review.role}, {review.company}</span>
-                    </div>
-                  </footer>
-                </blockquote>
-              ))}
+
+                  {/* Page 2 (Cards 3, 4, 5) */}
+                  <div className="vx-reviews-page-grid">
+                    {clientReviews.slice(3, 6).map((review) => (
+                      <blockquote className="vx-review-card-sky" key={review.name}>
+                        <div className="vx-review-stars" aria-label="5 out of 5 stars">
+                          {Array.from({ length: 5 }, (_, starIndex) => (
+                            <Star key={starIndex} size={14} fill="currentColor" aria-hidden="true" />
+                          ))}
+                        </div>
+                        <p>“{review.quote}”</p>
+                        <footer>
+                          <div className="vx-review-avatar-sky" aria-hidden="true">
+                            {review.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                          </div>
+                          <div className="vx-review-author-info">
+                            <strong>{review.name}</strong>
+                            <span>{review.role}, {review.company}</span>
+                          </div>
+                        </footer>
+                      </blockquote>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Controls Bar (Matching Reference Image 0) */}
+              <div className="vx-reviews-bottom-controls">
+                <button
+                  type="button"
+                  className="vx-reviews-arrow-btn"
+                  onClick={() => setActiveReviewPage((prev) => (prev - 1 + 2) % 2)}
+                  aria-label="Previous reviews page"
+                >
+                  <ChevronLeft size={18} aria-hidden="true" />
+                </button>
+
+                <div className="vx-reviews-progress-bar-wrap">
+                  <span className="vx-reviews-counter">
+                    {String((activeReviewPage + 1) * 3).padStart(2, "0")} / {String(clientReviews.length).padStart(2, "0")}
+                  </span>
+                  <div className="vx-reviews-progress-track">
+                    <div 
+                      className="vx-reviews-progress-fill" 
+                      style={{ width: activeReviewPage === 0 ? "50%" : "100%" }}
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="vx-reviews-arrow-btn"
+                  onClick={() => setActiveReviewPage((prev) => (prev + 1) % 2)}
+                  aria-label="Next reviews page"
+                >
+                  <ChevronRight size={18} aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -728,56 +956,38 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ─── Insights & Thinking (Digital Solutions Blog) ─── */}
-        <section className="vx-blog" id="blog" aria-labelledby="blog-title">
-          <div className="vx-blog-heading">
-            <span>Insights &amp; Thinking</span>
-            <h2 id="blog-title">From the Digital Solutions team</h2>
-            <p>Practical perspectives on AI automation, systems integration, and performance marketing—written by the people building them.</p>
-          </div>
+        {/* ─── Featured Portfolio & Case Studies (Our Projects) ─── */}
+        <section className="vx-projects" id="projects" aria-labelledby="projects-title">
+          <div className="vx-projects-inner">
+            <div className="vx-projects-heading">
+              <span>FEATURED CASE STUDIES</span>
+              <h2 id="projects-title">OUR PROJECTS</h2>
+              <p>Explore how we engineer autonomous AI systems, high-performance web platforms, and growth engines for industry leaders.</p>
+            </div>
 
-          <div className="vx-blog-grid">
-            {blogPosts.map((post, idx) => (
-              <article
-                className="vx-blog-card"
-                key={post.slug}
-                style={{ animationDelay: `${idx * 130}ms` }}
-              >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  style={{ textDecoration: "none", color: "inherit", display: "flex", flexDirection: "column", height: "100%" }}
-                  aria-label={`Read article: ${post.title}`}
-                >
-                  <div className="vx-blog-cover" style={{ background: post.accent }} aria-hidden="true">
-                    <div className="vx-blog-cover-noise" />
-                    <span className="vx-blog-cover-initials">{post.author.initials}</span>
+            <div className="vx-projects-grid">
+              {featuredProjects.slice(0, 2).map((project) => (
+                <article className="vx-project-card" key={project.id}>
+                  <div className="vx-project-cover">
+                    <img src={project.image} alt={project.title} />
+                    <span className="vx-project-badge">{project.category}</span>
                   </div>
-                  <div className="vx-blog-body">
-                    <div className="vx-blog-meta">
-                      <span className="vx-blog-category">{post.category}</span>
-                      <span className="vx-blog-dot" aria-hidden="true" />
-                      <span className="vx-blog-time">{post.readTime}</span>
-                      <span className="vx-blog-dot" aria-hidden="true" />
-                      <time>{post.lastUpdated}</time>
+                  <div className="vx-project-body">
+                    <span className="vx-project-client">{project.client}</span>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <div className="vx-project-stat-pill">
+                      <strong style={{ color: project.accent }}>{project.stats}</strong>
                     </div>
-                    <h3>{post.title}</h3>
-                    <p>{post.excerpt}</p>
-                    <footer>
-                      <div className="vx-blog-author">
-                        <div className="vx-blog-author-avatar" aria-hidden="true">{post.author.initials}</div>
-                        <div>
-                          <strong>{post.author.name}</strong>
-                          <span>{post.author.role}</span>
-                        </div>
-                      </div>
-                      <span className="vx-blog-cta">
-                        Read article <ArrowRight size={13} aria-hidden="true" />
-                      </span>
-                    </footer>
+                    <div className="vx-project-tags">
+                      {project.tags.map((tag) => (
+                        <span className="vx-project-tag" key={tag}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
-                </Link>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

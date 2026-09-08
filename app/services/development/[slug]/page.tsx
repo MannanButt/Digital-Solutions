@@ -28,11 +28,5 @@ export default async function DevelopmentDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return (
-    <ServiceDetailView
-      detail={service}
-      backHref="/services/development"
-      backLabel="Back to Development"
-    />
-  );
+  return <ServiceDetailView detail={service} />;
 }
