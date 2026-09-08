@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -25,7 +26,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import type { ServiceDetail } from "@/src/features/services/types";
+import type { FAQItem, ServiceDetail } from "@/src/features/services/types";
 import { ServiceDeliverables, ServiceTimeline } from "./ServiceContent";
 import { ServicePageHeader } from "./ServicePageHeader";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
@@ -38,6 +39,22 @@ const ICON_MAP: Record<string, React.ElementType> = {
 type ServiceDetailViewProps = { detail: ServiceDetail; heroImage?: string };
 
 export function ServiceDetailView({ detail, heroImage = "/assets/images/home/hero-workflow.jpg" }: ServiceDetailViewProps) {
+  const [activeFaq, setActiveFaq] = useState<FAQItem | null>(null);
+
+  useEffect(() => {
+    if (!activeFaq) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveFaq(null);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [activeFaq]);
+
   return (
     <div className="ds-services-page">
       <ServicePageHeader backHref="/#services" backLabel="Back to Services" />
@@ -78,9 +95,9 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         <div className="ds-service-section-heading">
           <div>
             <span className="ds-service-section-kicker">Delivery approach</span>
-            <h2>A measured path from brief to launch.</h2>
+            <h2>A clear path from brief to production.</h2>
           </div>
-          <p className="ds-service-section-intro">A focused process keeps the work aligned, testable, and ready for the realities of production.</p>
+          <p className="ds-service-section-intro">A focused process keeps delivery aligned, testable, and ready for the realities of production.</p>
         </div>
         <ServiceTimeline steps={detail.workflowSteps} />
       </section>
@@ -89,21 +106,25 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         <div className="ds-service-split">
           <div>
             <span className="ds-service-section-kicker">Tools and foundations</span>
-            <h2>Designed for your stack.</h2>
-            <div className="ds-service-tech">
-              {detail.techStack.map((tech) => <span key={tech}>{tech}</span>)}
+            <h2>Built around your stack.</h2>
+            <div className="ds-service-tech-grid">
+              {detail.techStack.map((tech, index) => (
+                <span key={tech} style={{ animationDelay: `${index * 60}ms` }}>
+                  <small>{String(index + 1).padStart(2, "0")}</small>{tech}
+                </span>
+              ))}
             </div>
           </div>
 
           <div>
-            <span className="ds-service-section-kicker">Questions, answered</span>
-            <h2>Useful context before we start.</h2>
-            <div className="ds-service-faq">
+            <span className="ds-service-section-kicker">Common questions</span>
+            <h2>What to know before we begin.</h2>
+            <div className="ds-service-faq" aria-label="Frequently asked questions">
               {detail.faq.map((q) => (
-                <details key={q.question}>
-                  <summary><HelpCircle size={15} /> {q.question}</summary>
-                  <p>{q.answer}</p>
-                </details>
+                <button key={q.question} type="button" className="ds-service-faq-trigger" onClick={() => setActiveFaq(q)}>
+                  <span><HelpCircle size={15} /> {q.question}</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </button>
               ))}
             </div>
           </div>
@@ -119,6 +140,20 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
       </section>
 
       <AgencyFooter />
+
+      {activeFaq && (
+        <div className="ds-service-modal-backdrop" role="presentation" onClick={() => setActiveFaq(null)}>
+          <div className="ds-service-modal" role="dialog" aria-modal="true" aria-labelledby="service-faq-title" onClick={(event) => event.stopPropagation()}>
+            <div className="ds-service-modal-topline">
+              <span className="ds-service-section-kicker">Answer</span>
+              <button type="button" className="ds-service-modal-close" onClick={() => setActiveFaq(null)} aria-label="Close answer">×</button>
+            </div>
+            <h2 id="service-faq-title">{activeFaq.question}</h2>
+            <p>{activeFaq.answer}</p>
+            <button type="button" className="ds-service-primary ds-service-modal-action" onClick={() => setActiveFaq(null)}>Close answer</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
