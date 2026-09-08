@@ -31,145 +31,96 @@ import { ServicePageHeader } from "./ServicePageHeader";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  Zap,
-  Code2,
-  Search,
-  Globe,
-  Cpu,
-  FileText,
-  CheckCircle2,
-  Share2,
-  Target,
-  Layout,
-  TrendingUp,
-  Mail,
-  Users,
-  PieChart,
-  Database,
-  BarChart3,
-  LineChart,
-  Bell,
-  Brain,
+  Zap, Code2, Search, Globe, Cpu, FileText, CheckCircle2, Share2, Target, Layout,
+  TrendingUp, Mail, Users, PieChart, Database, BarChart3, LineChart, Bell, Brain,
 };
 
 type ServiceDetailViewProps = { detail: ServiceDetail };
 
 export function ServiceDetailView({ detail }: ServiceDetailViewProps) {
   return (
-    <div className="vx-page min-h-screen bg-[#F4F9FF] text-[#050B14]">
-      {/* Top Header Navigation Bar */}
+    <div className="ds-services-page">
       <ServicePageHeader backHref="/#services" backLabel="Back to Services" />
 
-      {/* Hero Section */}
-      <section className="relative pt-8 pb-20 px-6 sm:px-12 max-w-7xl mx-auto overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 left-0 w-80 h-80 bg-cyan-200/30 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100 border border-sky-300/60 text-sky-800 text-xs font-bold uppercase tracking-wider mb-6">
-            {detail.eyebrow || detail.title}
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-[#050B14] tracking-tight leading-[1.08] mb-6">
-            {detail.title}
-          </h1>
-
-          <p className="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed mb-8">
-            {detail.headline || detail.heroSubtitle} {detail.description || detail.shortDescription}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-linear-to-r from-sky-500 to-sky-600 text-white font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all"
-            >
-              Start This Project <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="#deliverables"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-sky-200 text-sky-900 font-semibold text-sm hover:bg-sky-50 transition-all shadow-sm"
-            >
-              View Deliverables
-            </Link>
-          </div>
-        </div>
-
-      </section>
-
-      {/* Deliverables Grid */}
-      <section id="deliverables" className="py-20 px-6 sm:px-12 max-w-7xl mx-auto">
-        <div className="mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-sky-600">What We Build & Deliver</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#050B14] mt-2">Core Capabilities & Output</h2>
-        </div>
-
-        <ServiceDeliverables items={detail.deliverables} getIcon={(iconName) => ICON_MAP[iconName] ?? Zap} />
-      </section>
-
-      {/* Process Workflow Steps */}
-      <section className="py-20 px-6 sm:px-12 bg-white border-y border-sky-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-sky-600">Implementation Process</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#050B14] mt-2">How We Execute</h2>
-          </div>
-
-          <ServiceTimeline steps={detail.workflowSteps} />
-        </div>
-      </section>
-
-      {/* Tech Stack & FAQ */}
-      <section className="py-20 px-6 sm:px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Tech Stack */}
+      <section className="ds-service-hero">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-sky-600">Tooling & Infrastructure</span>
-          <h3 className="text-2xl font-extrabold text-[#050B14] mt-2 mb-6">Technologies We Deploy</h3>
-          <div className="flex flex-wrap gap-2.5">
-            {detail.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 rounded-xl bg-white border border-sky-200 text-slate-800 text-xs font-semibold shadow-xs"
-              >
-                {tech}
-              </span>
-            ))}
+          <span className="ds-service-kicker">{detail.eyebrow || "Digital Solutions service"}</span>
+          <h1>{detail.title}</h1>
+          <p className="ds-service-hero-lede">{detail.heroSubtitle || detail.headline}</p>
+          <p className="ds-service-hero-description">{detail.shortDescription || detail.description}</p>
+          <div className="ds-service-actions">
+            <Link href="/#contact" className="ds-service-primary">Start a conversation <ArrowRight size={16} /></Link>
+            <Link href="#deliverables" className="ds-service-secondary">View deliverables</Link>
           </div>
         </div>
 
-        {/* FAQ */}
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-sky-600">Frequently Asked</span>
-          <h3 className="text-2xl font-extrabold text-[#050B14] mt-2 mb-6">Got Questions?</h3>
-          <div className="space-y-4">
-            {detail.faq.map((q) => (
-              <div key={q.question} className="p-5 rounded-2xl bg-white border border-sky-100">
-                <div className="flex items-center gap-2 font-bold text-sm text-[#050B14] mb-2">
-                  <HelpCircle className="w-4 h-4 text-sky-500 shrink-0" />
-                  {q.question}
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed pl-6">{q.answer}</p>
+        <aside className="ds-service-brief" aria-label="Service outcomes">
+          <span className="ds-service-brief-label">Engagement snapshot</span>
+          <h2>What success looks like</h2>
+          <div className="ds-service-metrics">
+            {detail.metrics.map((metric) => (
+              <div key={metric.label} className="ds-service-metric">
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
               </div>
             ))}
           </div>
+        </aside>
+      </section>
+
+      <section id="deliverables" className="ds-service-section">
+        <div className="ds-service-section-heading">
+          <div>
+            <span className="ds-service-section-kicker">Scope of work</span>
+            <h2>Clear outputs. Built to last.</h2>
+          </div>
+          <p className="ds-service-section-intro">We turn the brief into practical systems, documented decisions, and a delivery handover your team can confidently run.</p>
+        </div>
+        <ServiceDeliverables items={detail.deliverables} getIcon={(iconName) => ICON_MAP[iconName] ?? Zap} />
+      </section>
+
+      <section className="ds-service-section ds-service-section--wide">
+        <div className="ds-service-section-heading">
+          <div>
+            <span className="ds-service-section-kicker">Delivery approach</span>
+            <h2>A measured path from brief to launch.</h2>
+          </div>
+          <p className="ds-service-section-intro">A focused process keeps the work aligned, testable, and ready for the realities of production.</p>
+        </div>
+        <ServiceTimeline steps={detail.workflowSteps} />
+      </section>
+
+      <section className="ds-service-section">
+        <div className="ds-service-split">
+          <div>
+            <span className="ds-service-section-kicker">Tools and foundations</span>
+            <h2>Designed for your stack.</h2>
+            <div className="ds-service-tech">
+              {detail.techStack.map((tech) => <span key={tech}>{tech}</span>)}
+            </div>
+          </div>
+
+          <div>
+            <span className="ds-service-section-kicker">Questions, answered</span>
+            <h2>Useful context before we start.</h2>
+            <div className="ds-service-faq">
+              {detail.faq.map((q) => (
+                <details key={q.question}>
+                  <summary><HelpCircle size={15} /> {q.question}</summary>
+                  <p>{q.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Footer Banner */}
-      <section className="py-16 px-6 sm:px-12 max-w-7xl mx-auto">
-        <div className="p-10 sm:p-14 rounded-3xl bg-linear-to-r from-[#071325] via-[#0A1B36] to-[#050B14] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold mb-2">Ready to transform your {detail.title}?</h3>
-            <p className="text-sky-200 text-sm max-w-xl">
-              Talk directly with Digital Solutions specialists to design a high-ROI automation strategy.
-            </p>
-          </div>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-sky-400 text-slate-950 font-extrabold text-sm hover:bg-sky-300 transition-all shrink-0 shadow-lg"
-          >
-            Contact Us <ArrowUpRight className="w-4 h-4" />
-          </Link>
+      <section className="ds-service-cta">
+        <div>
+          <h2>Ready to make {detail.title.toLowerCase()} work harder?</h2>
+          <p>Talk with a Digital Solutions specialist about the right scope, sequence, and next step for your team.</p>
         </div>
+        <Link href="/#contact" className="ds-service-primary">Book a strategy call <ArrowUpRight size={16} /></Link>
       </section>
 
       <AgencyFooter />
