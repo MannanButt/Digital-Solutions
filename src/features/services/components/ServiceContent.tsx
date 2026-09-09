@@ -1,4 +1,5 @@
 import type { ElementType } from "react";
+import { ArrowUpRight } from "lucide-react";
 import type { Deliverable, WorkflowStep } from "@/src/features/services/types";
 
 type ServiceDeliverablesProps = {
@@ -9,13 +10,17 @@ type ServiceDeliverablesProps = {
 export function ServiceDeliverables({ items, getIcon }: ServiceDeliverablesProps) {
   return (
     <div className="ds-service-deliverables">
-      {items.map((item) => {
+      {items.map((item, index) => {
         const Icon = getIcon(item.iconName);
         return (
-          <article key={item.title} className="ds-service-deliverable">
-            <div className="ds-service-deliverable-icon"><Icon size={19} /></div>
+          <article key={item.title} className="ds-service-deliverable" style={{ animationDelay: `${index * 80}ms` }}>
+            <div className="ds-service-deliverable-topline">
+              <span className="ds-service-deliverable-number">{String(index + 1).padStart(2, "0")}</span>
+              <div className="ds-service-deliverable-icon"><Icon size={19} /></div>
+            </div>
             <h3>{item.title}</h3>
             <p>{item.desc}</p>
+            <span className="ds-service-deliverable-arrow" aria-hidden="true"><ArrowUpRight size={16} /></span>
           </article>
         );
       })}

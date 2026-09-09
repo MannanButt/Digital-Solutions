@@ -46,6 +46,39 @@ function formatMetric(metric: { value: string; label: string }) {
   return { value: metric.value.replace(/x/g, "×"), label: metric.label };
 }
 
+function parseMetric(value: string) {
+  const match = value.match(/^([+<]?)([\d.]+)(.*)$/);
+  if (!match) return { prefix: "", target: 0, suffix: value, decimals: 0 };
+  const decimals = match[2].includes(".") ? match[2].split(".")[1].length : 0;
+  return { prefix: match[1], target: Number(match[2]), suffix: match[3], decimals };
+}
+
+function AnimatedMetric({ value }: { value: string }) {
+  const parsed = parseMetric(value);
+  const [current, setCurrent] = useState(parsed.target >= 1 ? 1 : 0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || parsed.target === 0) {
+      setCurrent(parsed.target);
+      return;
+    }
+
+    let frame = 0;
+    const startValue = parsed.target >= 1 ? 1 : 0;
+    const startedAt = performance.now();
+    const animate = (now: number) => {
+      const progress = Math.min((now - startedAt) / 1400, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(startValue + (parsed.target - startValue) * eased);
+      if (progress < 1) frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [parsed.target]);
+
+  return <strong aria-label={value}>{`${parsed.prefix}${current.toFixed(parsed.decimals)}${parsed.suffix}`}</strong>;
+}
+
 type ServiceDetailViewProps = { detail: ServiceDetail; heroImage?: string };
 
 export function ServiceDetailView({ detail, heroImage = "/assets/images/home/hero-workflow.jpg" }: ServiceDetailViewProps) {
@@ -82,8 +115,10 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
           <div className="ds-service-hero-stats" aria-label="Service outcomes">
             {detail.metrics.map((metric) => (
               <div key={metric.label} className="ds-service-hero-stat">
-                <strong>{formatMetric(metric).value}</strong>
-                <span>{formatMetric(metric).label}</span>
+                {(() => {
+                  const formatted = formatMetric(metric);
+                  return <><AnimatedMetric value={formatted.value} /><span>{formatted.label}</span></>;
+                })()}
               </div>
             ))}
           </div>

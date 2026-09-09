@@ -60,11 +60,17 @@
 .ds-service-hub-card:hover .ds-service-hub-card-link { gap: 12px; }
 
 .ds-service-deliverables { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 70px; }
-.ds-service-deliverable { min-height: 220px; padding: 28px 0 24px; border-top: 1px solid #cfdce7; }
+.ds-service-deliverable { position: relative; min-height: 220px; padding: 28px 0 34px; border-top: 1px solid #cfdce7; animation: ds-deliverable-in 600ms ease both; }
 .ds-service-deliverable:nth-child(-n+2) { border-top-color: #93c9ef; }
-.ds-service-deliverable-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 24px; color: #0b73c7; }
+.ds-service-deliverable-topline { display: flex; align-items: center; justify-content: space-between; }
+.ds-service-deliverable-number { color: #8aa0b4; font-size: 11px; font-weight: 850; letter-spacing: .16em; }
+.ds-service-deliverable-icon { display: grid; place-items: center; width: 42px; height: 42px; color: #0b73c7; transition: transform 220ms ease, color 220ms ease; }
 .ds-service-deliverable h3 { color: #102b47; font-size: 19px; letter-spacing: -.025em; }
 .ds-service-deliverable p { max-width: 500px; margin-top: 10px; color: #62778b; font-size: 14px; line-height: 1.7; }
+.ds-service-deliverable-arrow { position: absolute; right: 0; bottom: 31px; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #afd9f5; border-radius: 50%; color: #0b73c7; opacity: .72; transition: transform 220ms ease, opacity 220ms ease, background 220ms ease; }
+.ds-service-deliverable:hover .ds-service-deliverable-icon { color: #2f8cff; transform: translateY(-2px); }
+.ds-service-deliverable:hover .ds-service-deliverable-arrow { opacity: 1; background: #eaf5fd; transform: translate(2px, -2px); }
+@keyframes ds-deliverable-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 .ds-service-process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
 .ds-service-step { position: relative; padding-top: 18px; border-top: 2px solid #83c6f2; }
 .ds-service-step:not(:last-child)::after { content: ""; position: absolute; top: 27px; right: -29px; width: 38px; height: 1px; background: linear-gradient(90deg, #83c6f2, #2f8cff); transform-origin: left center; animation: ds-connector-flow 2.4s ease-in-out infinite; }
@@ -134,5 +140,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-service-header-cta, .ds-service-primary, .ds-service-secondary, .ds-service-hub-card, .ds-service-hub-card-link, .ds-service-tech-grid span, .ds-service-modal-backdrop, .ds-service-modal, .ds-service-step:not(:last-child)::after, .ds-service-step:not(:last-child)::before { transition: none; animation: none; }
+  .ds-service-header-cta, .ds-service-primary, .ds-service-secondary, .ds-service-hub-card, .ds-service-hub-card-link, .ds-service-tech-grid span, .ds-service-modal-backdrop, .ds-service-modal, .ds-service-step:not(:last-child)::after, .ds-service-step:not(:last-child)::before, .ds-service-deliverable { transition: none; animation: none; }
 }
