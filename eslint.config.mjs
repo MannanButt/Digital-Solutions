@@ -13,7 +13,7 @@ const eslintConfig = defineConfig([
     "dist/**",
     "out/**",
     "build/**",
-    "next-env.d.ts",
+    "**/next-env.d.ts",
   ]),
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -34,6 +34,9 @@ const eslintConfig = defineConfig([
       react: {
         version: "detect",
       },
+    },
+    rules: {
+      "@next/next/no-html-link-for-pages": "off",
     },
   },
 ]);

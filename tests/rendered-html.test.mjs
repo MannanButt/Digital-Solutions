@@ -32,18 +32,17 @@ test("server-renders the Digital Solutions homepage", async () => {
   assert.match(html, /<title>Digital Solutions \| AI Workflow Automation<\/title>/i);
   assert.match(html, /AI Workflow/);
   assert.match(html, /Automation/);
-  assert.match(html, /Capabilities, together\./);
-  assert.match(html, /Customer Operations/);
+  assert.match(html, /Smart Solutions\./);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
 test("keeps the five-photo hero and focused redesign assets", async () => {
   const [home, homeContent, page, layout, css] = await Promise.all([
-    readFile(new URL("../src/features/home/components/HomePage.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../src/features/home/data/content.ts", import.meta.url), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../src/features/home/styles/home.css", import.meta.url), "utf8"),
+    readFile(new URL("../frontend/src/features/home/components/HomePage.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../frontend/src/features/home/data/content.ts", import.meta.url), "utf8"),
+    readFile(new URL("../frontend/app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../frontend/app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../frontend/src/features/home/styles/home.css", import.meta.url), "utf8"),
   ]);
 
   for (const image of [

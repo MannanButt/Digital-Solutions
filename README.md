@@ -20,23 +20,27 @@ This starter does not use `wrangler.jsonc`.
 ## Project Structure
 
 ```text
-app/                              Route entry points and global metadata
-src/components/                   Shared reusable UI
-src/features/home/components/     Home page composition and interactions
-src/features/home/data/           Hero and capability content
-src/features/home/styles/         Home page visual system
-src/features/services/data/       Service navigation and service taxonomy
-public/assets/images/home/         Home page photography
-public/assets/images/services/     Service menu photography
+frontend/app/                     Route entry points and global metadata
+frontend/src/components/          Shared reusable UI
+frontend/src/features/home/                Home page composition, data, and styles
+frontend/src/features/services/             Service navigation, data, and styles
+frontend/src/features/contact/              Booking and contact experience
+frontend/public/assets/images/home/         Home page photography
+frontend/public/assets/images/services/     Service menu photography
 tests/                             Render and structure checks
-worker/                            Cloudflare/Vinext worker entry
+backend/worker/                   Cloudflare/Vinext worker entry point
+backend/db/                       Database client and schema
+backend/drizzle/                  Generated database migrations
+build/                            Sites build integration
 ```
 
 ## Architecture
 
 - Route files remain intentionally thin.
-- Feature-specific content, UI, and styling live together under `src/features`.
-- Reusable components live under `src/components`.
+- Frontend routes and browser code live under `frontend`.
+- Backend runtime and database code live under `backend`.
+- Feature-specific content, UI, and styling live together under `frontend/src/features`.
+- Reusable components live under `frontend/src/components`.
 - Public assets are grouped by the feature that owns them.
 - Service taxonomy is centralized so navigation and search share one source.
 

@@ -1,0 +1,78 @@
+.ds-software-page { background: #f5f8fc; }
+.ds-software-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 720px; background: #06152f url('/assets/images/home/workflow-team.jpg') center / cover no-repeat; color: #fff; }
+.ds-software-hero::before { position: absolute; inset: 0; z-index: -2; content: ""; background: linear-gradient(90deg, rgba(3, 15, 39, .96) 0%, rgba(4, 26, 58, .86) 48%, rgba(4, 26, 58, .44) 100%), linear-gradient(0deg, rgba(3, 15, 39, .88), rgba(3, 15, 39, .1) 70%); }
+.ds-software-hero::after { position: absolute; inset: 0; z-index: -1; content: ""; opacity: .2; background: radial-gradient(circle at 78% 24%, rgba(85, 180, 255, .42), transparent 22%), linear-gradient(120deg, transparent 40%, rgba(255,255,255,.08) 40.1%, transparent 40.3%); }
+.ds-software-hero-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; width: min(1180px, calc(100% - 48px)); min-height: 720px; margin: 0 auto; padding: 170px 0 80px; animation: ds-software-hero-in 850ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes ds-software-hero-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.ds-software-hero-copy h1 { max-width: 800px; margin-top: 18px; color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(56px, 7.2vw, 94px); font-weight: 800; letter-spacing: -.07em; line-height: .94; }
+.ds-software-hero-copy h1 em { color: #55b4ff; font-style: normal; }
+.ds-software-hero-lede { max-width: 660px; margin-top: 26px; color: #c7d9eb; font-size: 18px; line-height: 1.7; }
+.ds-software-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.ds-software-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr); gap: 80px; align-items: end; width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 100px 0 54px; }
+.ds-software-intro h2 { max-width: 720px; margin-top: 14px; color: #0b1b31; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(36px, 4.5vw, 58px); letter-spacing: -.06em; line-height: .98; }
+.ds-software-intro > p { max-width: 430px; color: #60758a; font-size: 14px; line-height: 1.75; }
+.ds-software-category-nav { display: flex; flex-wrap: wrap; gap: 10px; width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding-bottom: 50px; }
+.ds-software-category-nav a { display: inline-flex; align-items: center; gap: 9px; padding: 11px 14px; border: 1px solid #c5d7e7; border-radius: 99px; background: rgba(255,255,255,.58); color: #173652; font-size: 12px; font-weight: 800; transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease; }
+.ds-software-category-nav a:hover { border-color: #2f8cff; background: #fff; color: #0b73c7; transform: translateY(-2px); }
+.ds-software-category-nav svg { color: #0b73c7; }
+.ds-software-plans { display: grid; gap: 28px; width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.ds-software-category { padding: 34px; border: 1px solid #d7e3ed; border-top: 3px solid #55b4ff; background: #fff; box-shadow: 0 14px 38px rgba(16, 45, 75, .06); }
+.ds-software-category--green { border-top-color: #24a982; }
+.ds-software-category--orange { border-top-color: #e9793a; }
+.ds-software-category--blue { border-top-color: #2f8cff; }
+.ds-software-category-heading { display: grid; grid-template-columns: minmax(0, .9fr) minmax(240px, .55fr); gap: 50px; align-items: end; padding-bottom: 28px; }
+.ds-software-category-index { display: block; margin-bottom: 14px; color: #8aa0b4; font-size: 11px; font-weight: 850; letter-spacing: .16em; }
+.ds-software-category h2 { margin-top: 12px; color: #0b1b31; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(30px, 4vw, 48px); letter-spacing: -.055em; line-height: 1; }
+.ds-software-category-heading > p { max-width: 420px; color: #60758a; font-size: 14px; line-height: 1.7; }
+.ds-software-table { border-top: 1px solid #cfdce7; }
+.ds-software-table-header, .ds-software-table-row { display: grid; grid-template-columns: 52px minmax(220px, 1.8fr) minmax(145px, .75fr) minmax(130px, .7fr) minmax(105px, .55fr); gap: 20px; align-items: center; }
+.ds-software-table-header { padding: 16px 0; color: #6f8497; font-size: 10px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+.ds-software-table-row { min-height: 78px; border-top: 1px solid #e2eaf1; color: #183752; font-size: 13px; transition: background 180ms ease, transform 180ms ease; }
+.ds-software-table-row:hover { background: linear-gradient(90deg, rgba(232,244,255,.45), transparent 82%); transform: translateX(3px); }
+.ds-software-logo { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid #dbe7f0; border-radius: 12px; background: #f8fbfe; box-shadow: 0 5px 14px rgba(16,45,75,.08); }
+.ds-software-logo img { width: 24px; height: 24px; object-fit: contain; }
+.ds-software-product { display: grid; gap: 5px; }
+.ds-software-product strong { color: #112a44; font-size: 15px; }
+.ds-software-product span { color: #71879b; font-size: 12px; line-height: 1.4; }
+.ds-software-official { color: #71879b; text-decoration: line-through; text-decoration-color: #d26b6b; }
+.ds-software-price { justify-self: start; padding: 9px 14px; border-radius: 10px; background: #e8f4ff; color: #0b73c7; font-size: 16px; letter-spacing: -.02em; }
+.ds-software-category--green .ds-software-price { background: #e4f7f0; color: #087b5e; }
+.ds-software-category--orange .ds-software-price { background: #fff0e7; color: #b84a18; }
+.ds-software-savings { justify-self: start; padding: 8px 11px; border-radius: 99px; background: #eff7fd; color: #0b73c7; font-size: 11px; font-weight: 850; white-space: nowrap; }
+.ds-software-category--green .ds-software-savings { background: #e4f7f0; color: #087b5e; }
+.ds-software-category--orange .ds-software-savings { background: #fff0e7; color: #b84a18; }
+.ds-software-note { display: flex; justify-content: space-between; align-items: center; gap: 30px; width: min(1180px, calc(100% - 48px)); margin: 92px auto 0; padding: 42px 48px; background: linear-gradient(115deg, #061b3b, #0b4f91); color: #fff; }
+.ds-software-note h2 { margin-top: 10px; color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -.05em; }
+.ds-software-note .ds-service-primary { flex: 0 0 auto; background: #55b4ff; color: #07162a; }
+.ds-software-disclaimer { width: min(1180px, calc(100% - 48px)); margin: 20px auto 80px; color: #7890a5; font-size: 11px; line-height: 1.65; }
+.ds-software-page [data-software-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1); }
+.ds-software-page [data-software-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.ds-software-category:nth-child(2) { transition-delay: 80ms; }
+.ds-software-category:nth-child(3) { transition-delay: 160ms; }
+.vx-new-service-link { position: relative; color: #8ed4ff !important; }
+.vx-new-service-link span { display: inline-flex; align-items: center; height: 16px; padding: 0 5px; border: 1px solid rgba(85,180,255,.5); border-radius: 4px; color: #55b4ff; font-size: 7px; font-weight: 850; letter-spacing: .08em; }
+.vx-new-service-link:hover { color: #fff !important; }
+@media (max-width: 860px) {
+  .ds-software-hero-inner { padding-top: 190px; }
+  .ds-software-intro, .ds-software-category-heading { grid-template-columns: 1fr; gap: 20px; }
+  .ds-software-category { padding: 26px 20px; }
+  .ds-software-table-header { display: none; }
+  .ds-software-table-row { grid-template-columns: 42px 1fr auto; gap: 10px 14px; padding: 18px 0; }
+  .ds-software-logo { grid-column: 1; grid-row: 1 / span 2; width: 38px; height: 38px; }
+  .ds-software-product { grid-column: 2 / -1; }
+  .ds-software-official { grid-column: 2; grid-row: 2; }
+  .ds-software-price { grid-column: 3; grid-row: 2; }
+  .ds-software-savings { grid-column: 2 / -1; grid-row: 3; justify-self: end; }
+}
+@media (max-width: 560px) {
+  .ds-software-hero-inner, .ds-software-intro, .ds-software-category-nav, .ds-software-plans, .ds-software-note, .ds-software-disclaimer { width: min(100% - 32px, 1180px); }
+  .ds-software-intro { padding-top: 70px; }
+  .ds-software-hero-copy h1 { font-size: clamp(48px, 15vw, 70px); }
+  .ds-software-hero-lede { font-size: 16px; }
+  .ds-software-note { display: block; padding: 30px 24px; }
+  .ds-software-note .ds-service-primary { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-software-hero-inner, .ds-software-table-row, .ds-software-page [data-software-reveal] { animation: none; transition: none; }
+  .ds-software-page [data-software-reveal] { opacity: 1; transform: none; }
+}

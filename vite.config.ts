@@ -1,12 +1,18 @@
-process.stdout?.on?.("error", (err: any) => { if (err?.code !== "EOF" && err?.code !== "EPIPE") console.error(err); });
-process.stderr?.on?.("error", (err: any) => { if (err?.code !== "EOF" && err?.code !== "EPIPE") console.error(err); });
-process.on("uncaughtException", (err: any) => {
-  if (err?.code === "EOF" || err?.code === "EPIPE" || err?.syscall === "write") return;
+function isBenignOutputError(error: unknown) {
+  if (typeof error !== "object" || error === null) return false;
+  const candidate = error as { code?: unknown; syscall?: unknown };
+  return candidate.code === "EOF" || candidate.code === "EPIPE" || candidate.syscall === "write";
+}
+
+process.stdout?.on?.("error", (err: unknown) => { if (!isBenignOutputError(err)) console.error(err); });
+process.stderr?.on?.("error", (err: unknown) => { if (!isBenignOutputError(err)) console.error(err); });
+process.on("uncaughtException", (err: unknown) => {
+  if (isBenignOutputError(err)) return;
   console.error(err);
 });
 
 import vinext from "vinext";
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
 
@@ -19,7 +25,7 @@ const { d1, r2 } = hostingConfig;
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 
 const localBindingConfig = {
-  main: "./worker/index.ts",
+  main: "./backend/worker/index.ts",
   compatibility_flags: ["nodejs_compat"],
   d1_databases: d1
     ? [
@@ -50,7 +56,7 @@ export default defineConfig(async ({ command }) => {
   const enableCloudflare =
     command === "build" || process.env.ENABLE_CLOUDFLARE === "true";
 
-  const plugins: any[] = [vinext(), sites()];
+  const plugins: PluginOption[] = [vinext({ appDir: "./frontend" }), sites()];
 
   if (enableCloudflare) {
     const { cloudflare } = await import("@cloudflare/vite-plugin");
@@ -63,6 +69,7 @@ export default defineConfig(async ({ command }) => {
   }
 
   return {
+    publicDir: "frontend/public",
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
