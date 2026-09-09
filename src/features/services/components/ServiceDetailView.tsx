@@ -98,11 +98,31 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
     };
   }, [activeFaq]);
 
+  useEffect(() => {
+    document.documentElement.classList.add("ds-motion-ready");
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-service-reveal]"));
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach((section) => section.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.14, rootMargin: "0px 0px -8%" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="ds-services-page">
       <ServicePageHeader backHref="/#services" backLabel="Back to Services" />
 
-      <section className="ds-service-detail-hero" style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="ds-service-detail-hero" data-service-reveal style={{ backgroundImage: `url(${heroImage})` }}>
         <div className="ds-service-detail-hero-inner">
           <span className="ds-service-kicker">{detail.eyebrow || "Digital Solutions service"}</span>
           <h1>{detail.title}</h1>
@@ -125,7 +145,7 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         </div>
       </section>
 
-      <section id="deliverables" className="ds-service-section">
+      <section id="deliverables" className="ds-service-section" data-service-reveal>
         <div className="ds-service-section-heading">
           <div>
             <span className="ds-service-section-kicker">Scope of work</span>
@@ -136,7 +156,7 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         <ServiceDeliverables items={detail.deliverables} getIcon={(iconName) => ICON_MAP[iconName] ?? Zap} />
       </section>
 
-      <section className="ds-service-section ds-service-section--wide">
+      <section className="ds-service-section ds-service-section--wide" data-service-reveal>
         <div className="ds-service-section-heading">
           <div>
             <span className="ds-service-section-kicker">Delivery approach</span>
@@ -147,7 +167,7 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         <ServiceTimeline steps={detail.workflowSteps} />
       </section>
 
-      <section className="ds-service-section">
+      <section className="ds-service-section" data-service-reveal>
         <div className="ds-service-split">
           <div>
             <span className="ds-service-section-kicker">Tools and foundations</span>
@@ -176,7 +196,7 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
         </div>
       </section>
 
-      <section className="ds-service-cta">
+      <section className="ds-service-cta" data-service-reveal>
         <div>
           <h2>Ready to make {detail.title.toLowerCase()} work harder?</h2>
           <p>Talk with a Digital Solutions specialist about the right scope, sequence, and next step for your team.</p>

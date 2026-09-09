@@ -43,7 +43,7 @@ export function ServiceHubView({ config }: { config: HubPageConfig }) {
           {services.map((service, index) => {
             const IconComponent = icons[service.slug] ?? HelpCircle;
             return (
-              <Link key={service.slug} href={`/services/${groupSlug}/${service.slug}`} className="ds-service-hub-card">
+              <Link key={service.slug} href={`/services/${groupSlug}/${service.slug}`} className="ds-service-hub-card" style={{ animationDelay: `${index * 80}ms` }}>
                 <div className="ds-service-hub-card-top">
                   <span className="ds-service-hub-card-index">{String(index + 1).padStart(2, "0")}</span>
                   <div className="ds-service-hub-icon"><IconComponent size={21} /></div>
